@@ -77,20 +77,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_fechaRegistro}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaRegistro}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_usuarioRegistro}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.usuarioRegistro}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdCorrelativoTitle_estado}"/>
