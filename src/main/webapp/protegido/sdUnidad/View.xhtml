@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdUnidadViewDlg" widgetVar="SdUnidadViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSdUnidadTitle}">
+            <h:form id="SdUnidadViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdUnidadController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSdUnidadLabel_id}"/>
+                        <h:outputText value="#{sdUnidadController.selected.id}" title="#{bundle.ViewSdUnidadTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSdUnidadLabel_nombre}"/>
+                        <h:outputText value="#{sdUnidadController.selected.nombre}" title="#{bundle.ViewSdUnidadTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewSdUnidadLabel_descripcion}"/>
+                        <h:outputText value="#{sdUnidadController.selected.descripcion}" title="#{bundle.ViewSdUnidadTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewSdUnidadLabel_estado}"/>
+                        <h:outputText value="#{sdUnidadController.selected.estado}" title="#{bundle.ViewSdUnidadTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SdUnidadViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

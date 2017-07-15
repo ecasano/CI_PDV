@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SsUsuarioViewDlg" widgetVar="SsUsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSsUsuarioTitle}">
+            <h:form id="SsUsuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ssUsuarioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_id}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.id}" title="#{bundle.ViewSsUsuarioTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_usuario}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.usuario}" title="#{bundle.ViewSsUsuarioTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_contrasena}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.contrasena}" title="#{bundle.ViewSsUsuarioTitle_contrasena}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_nombre}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.nombre}" title="#{bundle.ViewSsUsuarioTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_correo}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.correo}" title="#{bundle.ViewSsUsuarioTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_estado}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.estado}" title="#{bundle.ViewSsUsuarioTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_idPerfil}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.idPerfil}" title="#{bundle.ViewSsUsuarioTitle_idPerfil}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SsUsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdPuntoVentaCreateDlg" widgetVar="SdPuntoVentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSdPuntoVentaTitle}">
+            <h:form id="SdPuntoVentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdPuntoVentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{sdPuntoVentaController.selected.id}" title="#{bundle.CreateSdPuntoVentaTitle_id}" required="true" requiredMessage="#{bundle.CreateSdPuntoVentaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{sdPuntoVentaController.selected.codigo}" title="#{bundle.CreateSdPuntoVentaTitle_codigo}" />
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{sdPuntoVentaController.selected.descripcion}" title="#{bundle.CreateSdPuntoVentaTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{sdPuntoVentaController.selected.direccion}" title="#{bundle.CreateSdPuntoVentaTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_ubigeo}" for="ubigeo" />
+                        <p:inputText id="ubigeo" value="#{sdPuntoVentaController.selected.ubigeo}" title="#{bundle.CreateSdPuntoVentaTitle_ubigeo}" />
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_idEmpresa}" for="idEmpresa" />
+                        <p:inputText id="idEmpresa" value="#{sdPuntoVentaController.selected.idEmpresa}" title="#{bundle.CreateSdPuntoVentaTitle_idEmpresa}" />
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdPuntoVentaController.selected.fechaRegistro}" title="#{bundle.EditSdPuntoVentaTitle_fechaRegistro}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{sdPuntoVentaController.selected.usuarioRegistro}" title="#{bundle.CreateSdPuntoVentaTitle_usuarioRegistro}" />
+                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdPuntoVentaController.selected.estado}" title="#{bundle.CreateSdPuntoVentaTitle_estado}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sdPuntoVentaController.create}" value="#{bundle.Save}" update="display,:SdPuntoVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdPuntoVentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdPuntoVentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

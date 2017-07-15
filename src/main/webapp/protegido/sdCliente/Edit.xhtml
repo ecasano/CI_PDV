@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdClienteEditDlg" widgetVar="SdClienteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSdClienteTitle}">
+            <h:form id="SdClienteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdClienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{sdClienteController.selected.id}" title="#{bundle.EditSdClienteTitle_id}" required="true" requiredMessage="#{bundle.EditSdClienteRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_tipoDocumento}" for="tipoDocumento" />
+                        <p:inputText id="tipoDocumento" value="#{sdClienteController.selected.tipoDocumento}" title="#{bundle.EditSdClienteTitle_tipoDocumento}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_nroDocumento}" for="nroDocumento" />
+                        <p:inputText id="nroDocumento" value="#{sdClienteController.selected.nroDocumento}" title="#{bundle.EditSdClienteTitle_nroDocumento}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{sdClienteController.selected.nombres}" title="#{bundle.EditSdClienteTitle_nombres}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_apellidoPaterno}" for="apellidoPaterno" />
+                        <p:inputText id="apellidoPaterno" value="#{sdClienteController.selected.apellidoPaterno}" title="#{bundle.EditSdClienteTitle_apellidoPaterno}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_apellidoMaterno}" for="apellidoMaterno" />
+                        <p:inputText id="apellidoMaterno" value="#{sdClienteController.selected.apellidoMaterno}" title="#{bundle.EditSdClienteTitle_apellidoMaterno}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{sdClienteController.selected.direccion}" title="#{bundle.EditSdClienteTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{sdClienteController.selected.correo}" title="#{bundle.EditSdClienteTitle_correo}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdClienteController.selected.estado}" title="#{bundle.EditSdClienteTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdClienteController.selected.fechaRegistro}" title="#{bundle.EditSdClienteTitle_fechaRegistro}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{sdClienteController.selected.usuarioRegistro}" title="#{bundle.EditSdClienteTitle_usuarioRegistro}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_fechaActualizacion}" for="fechaActualizacion" />
+                        <p:calendar id="fechaActualizacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdClienteController.selected.fechaActualizacion}" title="#{bundle.EditSdClienteTitle_fechaActualizacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_usuarioActualizacion}" for="usuarioActualizacion" />
+                        <p:inputText id="usuarioActualizacion" value="#{sdClienteController.selected.usuarioActualizacion}" title="#{bundle.EditSdClienteTitle_usuarioActualizacion}" />
+                        <p:outputLabel value="#{bundle.EditSdClienteLabel_ubigeo}" for="ubigeo" />
+                        <p:inputText id="ubigeo" value="#{sdClienteController.selected.ubigeo}" title="#{bundle.EditSdClienteTitle_ubigeo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sdClienteController.update}" value="#{bundle.Save}" update="display,:SdClienteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SdClienteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdClienteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

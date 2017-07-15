@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdMonedaViewDlg" widgetVar="SdMonedaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSdMonedaTitle}">
+            <h:form id="SdMonedaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdMonedaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSdMonedaLabel_id}"/>
+                        <h:outputText value="#{sdMonedaController.selected.id}" title="#{bundle.ViewSdMonedaTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSdMonedaLabel_nombre}"/>
+                        <h:outputText value="#{sdMonedaController.selected.nombre}" title="#{bundle.ViewSdMonedaTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewSdMonedaLabel_simbolo}"/>
+                        <h:outputText value="#{sdMonedaController.selected.simbolo}" title="#{bundle.ViewSdMonedaTitle_simbolo}"/>
+                        <h:outputText value="#{bundle.ViewSdMonedaLabel_abreviatura}"/>
+                        <h:outputText value="#{sdMonedaController.selected.abreviatura}" title="#{bundle.ViewSdMonedaTitle_abreviatura}"/>
+                        <h:outputText value="#{bundle.ViewSdMonedaLabel_estado}"/>
+                        <h:outputText value="#{sdMonedaController.selected.estado}" title="#{bundle.ViewSdMonedaTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SdMonedaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

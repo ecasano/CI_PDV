@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdClienteViewDlg" widgetVar="SdClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSdClienteTitle}">
+            <h:form id="SdClienteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdClienteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_id}"/>
+                        <h:outputText value="#{sdClienteController.selected.id}" title="#{bundle.ViewSdClienteTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_tipoDocumento}"/>
+                        <h:outputText value="#{sdClienteController.selected.tipoDocumento}" title="#{bundle.ViewSdClienteTitle_tipoDocumento}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_nroDocumento}"/>
+                        <h:outputText value="#{sdClienteController.selected.nroDocumento}" title="#{bundle.ViewSdClienteTitle_nroDocumento}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_nombres}"/>
+                        <h:outputText value="#{sdClienteController.selected.nombres}" title="#{bundle.ViewSdClienteTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_apellidoPaterno}"/>
+                        <h:outputText value="#{sdClienteController.selected.apellidoPaterno}" title="#{bundle.ViewSdClienteTitle_apellidoPaterno}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_apellidoMaterno}"/>
+                        <h:outputText value="#{sdClienteController.selected.apellidoMaterno}" title="#{bundle.ViewSdClienteTitle_apellidoMaterno}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_direccion}"/>
+                        <h:outputText value="#{sdClienteController.selected.direccion}" title="#{bundle.ViewSdClienteTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_correo}"/>
+                        <h:outputText value="#{sdClienteController.selected.correo}" title="#{bundle.ViewSdClienteTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_estado}"/>
+                        <h:outputText value="#{sdClienteController.selected.estado}" title="#{bundle.ViewSdClienteTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_fechaRegistro}"/>
+                        <h:outputText value="#{sdClienteController.selected.fechaRegistro}" title="#{bundle.ViewSdClienteTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_usuarioRegistro}"/>
+                        <h:outputText value="#{sdClienteController.selected.usuarioRegistro}" title="#{bundle.ViewSdClienteTitle_usuarioRegistro}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_fechaActualizacion}"/>
+                        <h:outputText value="#{sdClienteController.selected.fechaActualizacion}" title="#{bundle.ViewSdClienteTitle_fechaActualizacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_usuarioActualizacion}"/>
+                        <h:outputText value="#{sdClienteController.selected.usuarioActualizacion}" title="#{bundle.ViewSdClienteTitle_usuarioActualizacion}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_ubigeo}"/>
+                        <h:outputText value="#{sdClienteController.selected.ubigeo}" title="#{bundle.ViewSdClienteTitle_ubigeo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SdClienteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

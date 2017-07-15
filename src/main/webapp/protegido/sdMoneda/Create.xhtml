@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdMonedaCreateDlg" widgetVar="SdMonedaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSdMonedaTitle}">
+            <h:form id="SdMonedaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdMonedaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSdMonedaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{sdMonedaController.selected.id}" title="#{bundle.CreateSdMonedaTitle_id}" required="true" requiredMessage="#{bundle.CreateSdMonedaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateSdMonedaLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sdMonedaController.selected.nombre}" title="#{bundle.CreateSdMonedaTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateSdMonedaLabel_simbolo}" for="simbolo" />
+                        <p:inputText id="simbolo" value="#{sdMonedaController.selected.simbolo}" title="#{bundle.CreateSdMonedaTitle_simbolo}" />
+                        <p:outputLabel value="#{bundle.CreateSdMonedaLabel_abreviatura}" for="abreviatura" />
+                        <p:inputText id="abreviatura" value="#{sdMonedaController.selected.abreviatura}" title="#{bundle.CreateSdMonedaTitle_abreviatura}" />
+                        <p:outputLabel value="#{bundle.CreateSdMonedaLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdMonedaController.selected.estado}" title="#{bundle.CreateSdMonedaTitle_estado}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sdMonedaController.create}" value="#{bundle.Save}" update="display,:SdMonedaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdMonedaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdMonedaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

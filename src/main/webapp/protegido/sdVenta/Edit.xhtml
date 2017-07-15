@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdVentaEditDlg" widgetVar="SdVentaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSdVentaTitle}">
+            <h:form id="SdVentaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdVentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{sdVentaController.selected.id}" title="#{bundle.EditSdVentaTitle_id}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_serieDocumento}" for="serieDocumento" />
+                        <p:inputText id="serieDocumento" value="#{sdVentaController.selected.serieDocumento}" title="#{bundle.EditSdVentaTitle_serieDocumento}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_numeroDocumento}" for="numeroDocumento" />
+                        <p:inputText id="numeroDocumento" value="#{sdVentaController.selected.numeroDocumento}" title="#{bundle.EditSdVentaTitle_numeroDocumento}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_fechaDocumento}" for="fechaDocumento" />
+                        <p:calendar id="fechaDocumento" pattern="MM/dd/yyyy" value="#{sdVentaController.selected.fechaDocumento}" title="#{bundle.EditSdVentaTitle_fechaDocumento}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_fechaVencimientoDocumento}" for="fechaVencimientoDocumento" />
+                        <p:calendar id="fechaVencimientoDocumento" pattern="MM/dd/yyyy" value="#{sdVentaController.selected.fechaVencimientoDocumento}" title="#{bundle.EditSdVentaTitle_fechaVencimientoDocumento}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_tipoDocumentoCliente}" for="tipoDocumentoCliente" />
+                        <p:inputText id="tipoDocumentoCliente" value="#{sdVentaController.selected.tipoDocumentoCliente}" title="#{bundle.EditSdVentaTitle_tipoDocumentoCliente}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_nroDocumentoCliente}" for="nroDocumentoCliente" />
+                        <p:inputText id="nroDocumentoCliente" value="#{sdVentaController.selected.nroDocumentoCliente}" title="#{bundle.EditSdVentaTitle_nroDocumentoCliente}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_nombreCliente}" for="nombreCliente" />
+                        <p:inputText id="nombreCliente" value="#{sdVentaController.selected.nombreCliente}" title="#{bundle.EditSdVentaTitle_nombreCliente}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_direccionCliente}" for="direccionCliente" />
+                        <p:inputText id="direccionCliente" value="#{sdVentaController.selected.direccionCliente}" title="#{bundle.EditSdVentaTitle_direccionCliente}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdVentaController.selected.estado}" title="#{bundle.EditSdVentaTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{sdVentaController.selected.subtotal}" title="#{bundle.EditSdVentaTitle_subtotal}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_igv}" for="igv" />
+                        <p:inputText id="igv" value="#{sdVentaController.selected.igv}" title="#{bundle.EditSdVentaTitle_igv}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{sdVentaController.selected.total}" title="#{bundle.EditSdVentaTitle_total}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_fechaAnulacion}" for="fechaAnulacion" />
+                        <p:calendar id="fechaAnulacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdVentaController.selected.fechaAnulacion}" title="#{bundle.EditSdVentaTitle_fechaAnulacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_usuarioAnulacion}" for="usuarioAnulacion" />
+                        <p:inputText id="usuarioAnulacion" value="#{sdVentaController.selected.usuarioAnulacion}" title="#{bundle.EditSdVentaTitle_usuarioAnulacion}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdVentaController.selected.fechaRegistro}" title="#{bundle.EditSdVentaTitle_fechaRegistro}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{sdVentaController.selected.usuarioRegistro}" title="#{bundle.EditSdVentaTitle_usuarioRegistro}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_tipoTarjeta}" for="tipoTarjeta" />
+                        <p:inputText id="tipoTarjeta" value="#{sdVentaController.selected.tipoTarjeta}" title="#{bundle.EditSdVentaTitle_tipoTarjeta}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_nroTarjeta}" for="nroTarjeta" />
+                        <p:inputText id="nroTarjeta" value="#{sdVentaController.selected.nroTarjeta}" title="#{bundle.EditSdVentaTitle_nroTarjeta}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_fechaVencimientoTarjeta}" for="fechaVencimientoTarjeta" />
+                        <p:inputText id="fechaVencimientoTarjeta" value="#{sdVentaController.selected.fechaVencimientoTarjeta}" title="#{bundle.EditSdVentaTitle_fechaVencimientoTarjeta}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_titularTarjeta}" for="titularTarjeta" />
+                        <p:inputText id="titularTarjeta" value="#{sdVentaController.selected.titularTarjeta}" title="#{bundle.EditSdVentaTitle_titularTarjeta}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_tipoCambio}" for="tipoCambio" />
+                        <p:inputText id="tipoCambio" value="#{sdVentaController.selected.tipoCambio}" title="#{bundle.EditSdVentaTitle_tipoCambio}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_idFormaPago}" for="idFormaPago" />
+                        <p:selectOneMenu id="idFormaPago" value="#{sdVentaController.selected.idFormaPago}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idFormaPago}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sdFormaPagoController.itemsAvailableSelectOne}"
+                                           var="idFormaPagoItem"
+                                           itemValue="#{idFormaPagoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_idMoneda}" for="idMoneda" />
+                        <p:selectOneMenu id="idMoneda" value="#{sdVentaController.selected.idMoneda}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idMoneda}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sdMonedaController.itemsAvailableSelectOne}"
+                                           var="idMonedaItem"
+                                           itemValue="#{idMonedaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_idPuntoVenta}" for="idPuntoVenta" />
+                        <p:selectOneMenu id="idPuntoVenta" value="#{sdVentaController.selected.idPuntoVenta}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idPuntoVenta}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sdPuntoVentaController.itemsAvailableSelectOne}"
+                                           var="idPuntoVentaItem"
+                                           itemValue="#{idPuntoVentaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_idTipoDocumento}" for="idTipoDocumento" />
+                        <p:selectOneMenu id="idTipoDocumento" value="#{sdVentaController.selected.idTipoDocumento}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idTipoDocumento}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sdTipoDocumentoController.itemsAvailableSelectOne}"
+                                           var="idTipoDocumentoItem"
+                                           itemValue="#{idTipoDocumentoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSdVentaLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{sdVentaController.selected.idUsuario}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idUsuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ssUsuarioController.itemsAvailableSelectOne}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sdVentaController.update}" value="#{bundle.Save}" update="display,:SdVentaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SdVentaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdVentaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSdVentaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="SdVentaListForm">
+                <p:panel header="#{bundle.ListSdVentaTitle}">
+                    <p:dataTable id="datalist" value="#{sdVentaController.items}" var="item"
+                                 selectionMode="single" selection="#{sdVentaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_serieDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.serieDocumento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_numeroDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroDocumento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_fechaDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaDocumento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_fechaVencimientoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaVencimientoDocumento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_tipoDocumentoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoDocumentoCliente}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_nroDocumentoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nroDocumentoCliente}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_nombreCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreCliente}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_direccionCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionCliente}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_subtotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subtotal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_igv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.igv}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_total}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.total}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_fechaAnulacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaAnulacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_usuarioAnulacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioAnulacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_usuarioRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioRegistro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_tipoTarjeta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoTarjeta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_nroTarjeta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nroTarjeta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_fechaVencimientoTarjeta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaVencimientoTarjeta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_titularTarjeta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titularTarjeta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_tipoCambio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoCambio}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_idFormaPago}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFormaPago}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_idMoneda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMoneda}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_idPuntoVenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPuntoVenta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_idTipoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoDocumento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdVentaController.prepareCreate}" update=":SdVentaCreateForm" oncomplete="PF('SdVentaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SdVentaViewForm" oncomplete="PF('SdVentaViewDialog').show()" disabled="#{empty sdVentaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SdVentaEditForm" oncomplete="PF('SdVentaEditDialog').show()" disabled="#{empty sdVentaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sdVentaController.destroy}" update=":growl,datalist" disabled="#{empty sdVentaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

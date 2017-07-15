@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdCorrelativoCreateDlg" widgetVar="SdCorrelativoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSdCorrelativoTitle}">
+            <h:form id="SdCorrelativoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdCorrelativoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{sdCorrelativoController.selected.id}" title="#{bundle.CreateSdCorrelativoTitle_id}" required="true" requiredMessage="#{bundle.CreateSdCorrelativoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_idPuntoVenta}" for="idPuntoVenta" />
+                        <p:inputText id="idPuntoVenta" value="#{sdCorrelativoController.selected.idPuntoVenta}" title="#{bundle.CreateSdCorrelativoTitle_idPuntoVenta}" />
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_idTipoDocumento}" for="idTipoDocumento" />
+                        <p:inputText id="idTipoDocumento" value="#{sdCorrelativoController.selected.idTipoDocumento}" title="#{bundle.CreateSdCorrelativoTitle_idTipoDocumento}" />
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_serieInicial}" for="serieInicial" />
+                        <p:inputText id="serieInicial" value="#{sdCorrelativoController.selected.serieInicial}" title="#{bundle.CreateSdCorrelativoTitle_serieInicial}" />
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_numeroInicial}" for="numeroInicial" />
+                        <p:inputText id="numeroInicial" value="#{sdCorrelativoController.selected.numeroInicial}" title="#{bundle.CreateSdCorrelativoTitle_numeroInicial}" />
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_serieFinal}" for="serieFinal" />
+                        <p:inputText id="serieFinal" value="#{sdCorrelativoController.selected.serieFinal}" title="#{bundle.CreateSdCorrelativoTitle_serieFinal}" />
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_numeroFinal}" for="numeroFinal" />
+                        <p:inputText id="numeroFinal" value="#{sdCorrelativoController.selected.numeroFinal}" title="#{bundle.CreateSdCorrelativoTitle_numeroFinal}" />
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{sdCorrelativoController.selected.fecha}" title="#{bundle.EditSdCorrelativoTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdCorrelativoController.selected.fechaRegistro}" title="#{bundle.EditSdCorrelativoTitle_fechaRegistro}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_usuarioRegistro}" for="usuarioRegistro" />
+                        <p:inputText id="usuarioRegistro" value="#{sdCorrelativoController.selected.usuarioRegistro}" title="#{bundle.CreateSdCorrelativoTitle_usuarioRegistro}" />
+                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdCorrelativoController.selected.estado}" title="#{bundle.CreateSdCorrelativoTitle_estado}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sdCorrelativoController.create}" value="#{bundle.Save}" update="display,:SdCorrelativoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdCorrelativoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdCorrelativoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

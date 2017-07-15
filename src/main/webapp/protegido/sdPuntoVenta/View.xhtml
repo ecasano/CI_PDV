@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdPuntoVentaViewDlg" widgetVar="SdPuntoVentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSdPuntoVentaTitle}">
+            <h:form id="SdPuntoVentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdPuntoVentaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_id}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.id}" title="#{bundle.ViewSdPuntoVentaTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_codigo}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.codigo}" title="#{bundle.ViewSdPuntoVentaTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_descripcion}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.descripcion}" title="#{bundle.ViewSdPuntoVentaTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_direccion}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.direccion}" title="#{bundle.ViewSdPuntoVentaTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_ubigeo}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.ubigeo}" title="#{bundle.ViewSdPuntoVentaTitle_ubigeo}"/>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_idEmpresa}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.idEmpresa}" title="#{bundle.ViewSdPuntoVentaTitle_idEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_fechaRegistro}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.fechaRegistro}" title="#{bundle.ViewSdPuntoVentaTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_usuarioRegistro}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.usuarioRegistro}" title="#{bundle.ViewSdPuntoVentaTitle_usuarioRegistro}"/>
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_estado}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.estado}" title="#{bundle.ViewSdPuntoVentaTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SdPuntoVentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
