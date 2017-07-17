@@ -12,8 +12,7 @@
             <h:form id="SdMonedaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdMonedaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdMonedaLabel_id}"/>
-                        <h:outputText value="#{sdMonedaController.selected.id}" title="#{bundle.ViewSdMonedaTitle_id}"/>
+                        
                         <h:outputText value="#{bundle.ViewSdMonedaLabel_nombre}"/>
                         <h:outputText value="#{sdMonedaController.selected.nombre}" title="#{bundle.ViewSdMonedaTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSdMonedaLabel_simbolo}"/>
@@ -21,7 +20,7 @@
                         <h:outputText value="#{bundle.ViewSdMonedaLabel_abreviatura}"/>
                         <h:outputText value="#{sdMonedaController.selected.abreviatura}" title="#{bundle.ViewSdMonedaTitle_abreviatura}"/>
                         <h:outputText value="#{bundle.ViewSdMonedaLabel_estado}"/>
-                        <h:outputText value="#{sdMonedaController.selected.estado}" title="#{bundle.ViewSdMonedaTitle_estado}"/>
+                        <h:outputText value="#{sdMonedaController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdMonedaTitle_estado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdMonedaViewDialog.hide()"/>
                 </h:panelGroup>

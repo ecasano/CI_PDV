@@ -24,11 +24,10 @@
                 
                 <h:form id="menuForm">
                     <h:panelGrid columns="2" cellpadding="10">
-                        <p:graphicImage library="image" name="logo.png"/>              
-                        <p:menubar >
+                        <p:graphicImage library="image" name="logo.png"/> 
+                        <p:menubar>
                             <p:menuitem value="#{bundle.Home}" outcome="/protegido/principal" icon="ui-icon-home"/>
                             <p:submenu label="#{bundle.Maintenance}">
-                              
                                 <p:menuitem value="Categoria"  outcome="/protegido/sdCategoria/List" />      
                                 <p:menuitem value="Cliente"  outcome="/protegido/sdCliente/List" />
                                 <p:menuitem value="Correlativo"  outcome="/protegido/sdCorrelativo/List" />
@@ -42,17 +41,17 @@
                                 <p:menuitem value="Unidad"  outcome="/protegido/sdUnidad/List" />
                                 <p:menuitem value="Perfil"  outcome="/protegido/ssPerfil/List" />
                                 <p:menuitem value="Usuario"  outcome="/protegido/ssUsuario/List" />
- 
                             </p:submenu>
                             <p:submenu label="Registro de Venta">
                                 <p:menuitem value="Venta"  outcome="/protegido/sdVenta/List" />
                                 <p:menuitem value="Detalle de Venta"  outcome="/protegido/sdVentaDetalle/List" />
                             </p:submenu>
-                            
                             <f:facet name="options">
                                 <p:commandButton actionListener="#{indexController.cerrarSesion()}"  title="Cerrar Sessión" icon="ui-icon-power" action="/index"/>
                             </f:facet>
+                            
                         </p:menubar>
+                        
                     </h:panelGrid>
                 </h:form>
           

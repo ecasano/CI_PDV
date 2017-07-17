@@ -29,17 +29,17 @@
 
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdTipoCambioTitle_idMoneda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMoneda.nombre}"/>  
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdTipoCambioTitle_sdTipoCambioPK_fecha}"/>
                             </f:facet>
                             <h:outputText value="#{item.sdTipoCambioPK.fecha}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdTipoCambioTitle_sdTipoCambioPK_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.sdTipoCambioPK.id}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -51,15 +51,10 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdTipoCambioTitle_estado}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estado}"/>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
                         </p:column>
                         
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdTipoCambioTitle_idMoneda}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idMoneda}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdTipoCambioController.prepareCreate}" update=":SdTipoCambioCreateForm" oncomplete="PF('SdTipoCambioCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SdTipoCambioViewForm" oncomplete="PF('SdTipoCambioViewDialog').show()" disabled="#{empty sdTipoCambioController.selected}"/>

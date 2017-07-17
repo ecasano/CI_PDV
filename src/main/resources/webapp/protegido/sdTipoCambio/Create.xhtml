@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdTipoCambioCreateDlg" widgetVar="SdTipoCambioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSdTipoCambioTitle}">
+            <h:form id="SdTipoCambioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sdTipoCambioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_idMoneda}" for="idMoneda" />
+                        <p:selectOneMenu id="idMoneda" value="#{sdTipoCambioController.selected.idMoneda}" required="true" requiredMessage="#{bundle.EditSdTipoCambioRequiredMessage_idMoneda}">
+                            <f:selectItems value="#{sdMonedaController.itemsAvailableSelectOne}"
+                                           var="idMonedaItem"
+                                           itemValue="#{idMonedaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_sdTipoCambioPK_fecha}" for="sdTipoCambioPK_fecha" />
+                        <p:calendar id="sdTipoCambioPK_fecha" pattern="MM/dd/yyyy" value="#{sdTipoCambioController.selected.sdTipoCambioPK.fecha}" title="#{bundle.EditSdTipoCambioTitle_sdTipoCambioPK_fecha}" required="true" requiredMessage="#{bundle.EditSdTipoCambioRequiredMessage_sdTipoCambioPK_fecha}" showOn="button"/>
+                       <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_tc}" for="tc" />
+                        <p:inputText id="tc" value="#{sdTipoCambioController.selected.tc}" title="#{bundle.CreateSdTipoCambioTitle_tc}" />
+                        <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdTipoCambioController.selected.estado}" title="#{bundle.CreateSdTipoCambioTitle_estado}" />
+                        
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sdTipoCambioController.create}" value="#{bundle.Save}" update="display,:SdTipoCambioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdTipoCambioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdTipoCambioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
