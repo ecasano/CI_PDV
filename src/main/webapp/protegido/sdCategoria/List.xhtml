@@ -10,14 +10,14 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListSdUnidadTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ListSdCategoriaTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="SdUnidadListForm">
-                <p:panel header="#{bundle.ListSdUnidadTitle}">
-                    <p:dataTable id="datalist" value="#{sdUnidadController.items}" var="item"
-                                 selectionMode="single" selection="#{sdUnidadController.selected}"
+            <h:form id="SdCategoriaListForm">
+                <p:panel header="#{bundle.ListSdCategoriaTitle}">
+                    <p:dataTable id="datalist" value="#{sdCategoriaController.items}" var="item"
+                                 selectionMode="single" selection="#{sdCategoriaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.id}"
                                  rows="10"
@@ -27,35 +27,30 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
+                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdUnidadTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdUnidadTitle_nombre}"/>
+                                <h:outputText value="#{bundle.ListSdCategoriaTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdUnidadTitle_descripcion}"/>
+                                <h:outputText value="#{bundle.ListSdCategoriaTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdUnidadTitle_estado}"/>
+                                <h:outputText value="#{bundle.ListSdCategoriaTitle_estado}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estado}"/>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdUnidadController.prepareCreate}" update=":SdUnidadCreateForm" oncomplete="PF('SdUnidadCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SdUnidadViewForm" oncomplete="PF('SdUnidadViewDialog').show()" disabled="#{empty sdUnidadController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SdUnidadEditForm" oncomplete="PF('SdUnidadEditDialog').show()" disabled="#{empty sdUnidadController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sdUnidadController.destroy}" update=":growl,datalist" disabled="#{empty sdUnidadController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdCategoriaController.prepareCreate}" update=":SdCategoriaCreateForm" oncomplete="PF('SdCategoriaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SdCategoriaViewForm" oncomplete="PF('SdCategoriaViewDialog').show()" disabled="#{empty sdCategoriaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SdCategoriaEditForm" oncomplete="PF('SdCategoriaEditDialog').show()" disabled="#{empty sdCategoriaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sdCategoriaController.destroy}" update=":growl,datalist" disabled="#{empty sdCategoriaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

@@ -19,7 +19,7 @@
                         <h:outputText value="#{bundle.ViewSdUnidadLabel_descripcion}"/>
                         <h:outputText value="#{sdUnidadController.selected.descripcion}" title="#{bundle.ViewSdUnidadTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewSdUnidadLabel_estado}"/>
-                        <h:outputText value="#{sdUnidadController.selected.estado}" title="#{bundle.ViewSdUnidadTitle_estado}"/>
+                        <h:outputText value="#{sdUnidadController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdUnidadTitle_estado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdUnidadViewDialog.hide()"/>
                 </h:panelGroup>

@@ -12,14 +12,13 @@
             <h:form id="SdTipoDocumentoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdTipoDocumentoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdTipoDocumentoLabel_id}"/>
-                        <h:outputText value="#{sdTipoDocumentoController.selected.id}" title="#{bundle.ViewSdTipoDocumentoTitle_id}"/>
+                       
                         <h:outputText value="#{bundle.ViewSdTipoDocumentoLabel_codigoSUNAT}"/>
                         <h:outputText value="#{sdTipoDocumentoController.selected.codigoSUNAT}" title="#{bundle.ViewSdTipoDocumentoTitle_codigoSUNAT}"/>
                         <h:outputText value="#{bundle.ViewSdTipoDocumentoLabel_descripcion}"/>
                         <h:outputText value="#{sdTipoDocumentoController.selected.descripcion}" title="#{bundle.ViewSdTipoDocumentoTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewSdTipoDocumentoLabel_estado}"/>
-                        <h:outputText value="#{sdTipoDocumentoController.selected.estado}" title="#{bundle.ViewSdTipoDocumentoTitle_estado}"/>
+                        <h:outputText value="#{sdTipoDocumentoController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdTipoDocumentoTitle_estado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdTipoDocumentoViewDialog.hide()"/>
                 </h:panelGroup>

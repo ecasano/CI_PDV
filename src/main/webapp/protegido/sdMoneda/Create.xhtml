@@ -12,8 +12,6 @@
             <h:form id="SdMonedaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdMonedaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSdMonedaLabel_id}" for="id" />
-                        <p:inputText disabled="true" id="id" value="#{sdMonedaController.selected.id}" title="#{bundle.CreateSdMonedaTitle_id}" required="true" requiredMessage="#{bundle.CreateSdMonedaRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateSdMonedaLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{sdMonedaController.selected.nombre}" title="#{bundle.CreateSdMonedaTitle_nombre}" />
                         <p:outputLabel value="#{bundle.CreateSdMonedaLabel_simbolo}" for="simbolo" />
@@ -23,8 +21,8 @@
                         <p:outputLabel value="#{bundle.CreateSdMonedaLabel_estado}" for="estado" />
                         
                         <p:selectOneMenu id="estado" value="#{sdMonedaController.selected.estado}" required="true" requiredMessage="Seleccione un estado">
-                            <f:selectItem itemLabel="Activo" itemValue="0" />
-                            <f:selectItem itemLabel="Inactivo" itemValue="1" />
+                            <f:selectItem itemLabel="Activo" itemValue="1" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
                         </p:selectOneMenu>
                         
                         

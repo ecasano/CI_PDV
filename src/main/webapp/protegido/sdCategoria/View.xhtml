@@ -12,14 +12,12 @@
             <h:form id="SdCategoriaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdCategoriaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdCategoriaLabel_id}"/>
-                        <h:outputText value="#{sdCategoriaController.selected.id}" title="#{bundle.ViewSdCategoriaTitle_id}"/>
                         <h:outputText value="#{bundle.ViewSdCategoriaLabel_nombre}"/>
                         <h:outputText value="#{sdCategoriaController.selected.nombre}" title="#{bundle.ViewSdCategoriaTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSdCategoriaLabel_descripcion}"/>
                         <h:outputText value="#{sdCategoriaController.selected.descripcion}" title="#{bundle.ViewSdCategoriaTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewSdCategoriaLabel_estado}"/>
-                        <h:outputText value="#{sdCategoriaController.selected.estado}" title="#{bundle.ViewSdCategoriaTitle_estado}"/>
+                        <h:outputText value="#{sdCategoriaController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdCategoriaTitle_estado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdCategoriaViewDialog.hide()"/>
                 </h:panelGroup>

@@ -71,7 +71,7 @@ public class IndexController implements Serializable {
             SsUsuario user = (SsUsuario)context.getExternalContext().getSessionMap().get("usuario");
             
             if(user == null){
-                context.getExternalContext().redirect("/permisos.xhtml");
+                context.getExternalContext().redirect("/PDV/permisos.xhtml");
             }
             
         }catch(Exception e){

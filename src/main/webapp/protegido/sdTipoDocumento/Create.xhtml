@@ -12,14 +12,17 @@
             <h:form id="SdTipoDocumentoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdTipoDocumentoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSdTipoDocumentoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{sdTipoDocumentoController.selected.id}" title="#{bundle.CreateSdTipoDocumentoTitle_id}" required="true" requiredMessage="#{bundle.CreateSdTipoDocumentoRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateSdTipoDocumentoLabel_codigoSUNAT}" for="codigoSUNAT" />
+                       <p:outputLabel value="#{bundle.CreateSdTipoDocumentoLabel_codigoSUNAT}" for="codigoSUNAT" />
                         <p:inputText id="codigoSUNAT" value="#{sdTipoDocumentoController.selected.codigoSUNAT}" title="#{bundle.CreateSdTipoDocumentoTitle_codigoSUNAT}" />
                         <p:outputLabel value="#{bundle.CreateSdTipoDocumentoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{sdTipoDocumentoController.selected.descripcion}" title="#{bundle.CreateSdTipoDocumentoTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.CreateSdTipoDocumentoLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{sdTipoDocumentoController.selected.estado}" title="#{bundle.CreateSdTipoDocumentoTitle_estado}" />
+                        
+                        <p:selectOneMenu id="estado" value="#{sdTipoDocumentoController.selected.estado}" required="true" requiredMessage="Seleccione un estado">
+                            <f:selectItem itemLabel="Activo" itemValue="1" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdTipoDocumentoController.create}" value="#{bundle.Save}" update="display,:SdTipoDocumentoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdTipoDocumentoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdTipoDocumentoCreateDialog.hide()"/>

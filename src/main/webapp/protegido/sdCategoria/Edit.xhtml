@@ -12,14 +12,17 @@
             <h:form id="SdCategoriaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdCategoriaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditSdCategoriaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{sdCategoriaController.selected.id}" title="#{bundle.EditSdCategoriaTitle_id}" required="true" requiredMessage="#{bundle.EditSdCategoriaRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditSdCategoriaLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{sdCategoriaController.selected.nombre}" title="#{bundle.EditSdCategoriaTitle_nombre}" />
                         <p:outputLabel value="#{bundle.EditSdCategoriaLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{sdCategoriaController.selected.descripcion}" title="#{bundle.EditSdCategoriaTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditSdCategoriaLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{sdCategoriaController.selected.estado}" title="#{bundle.EditSdCategoriaTitle_estado}" />
+                        
+                        <p:selectOneMenu id="estado" value="#{sdCategoriaController.selected.estado}" required="true" requiredMessage="Seleccione un estado">
+                            <f:selectItem itemLabel="Activo" itemValue="1" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdCategoriaController.update}" value="#{bundle.Save}" update="display,:SdCategoriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SdCategoriaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdCategoriaEditDialog.hide()"/>
