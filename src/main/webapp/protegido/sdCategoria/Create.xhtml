@@ -17,11 +17,11 @@
                         <p:outputLabel value="#{bundle.CreateSdCategoriaLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{sdCategoriaController.selected.descripcion}" title="#{bundle.CreateSdCategoriaTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.CreateSdCategoriaLabel_estado}" for="estado" />
-                        <p:selectOneMenu id="estado" value="#{sdCategoriaController.selected.estado}" required="true" requiredMessage="Seleccione un estado">
-                            <f:selectItem itemLabel="Activo" itemValue="1" />
-                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
-                        </p:selectOneMenu>
                         
+                        <p:selectOneMenu id="estado" value="#{sdCategoriaController.selected.estado}" required="true" requiredMessage="#{bundle.CreateSdCategoriaTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdCategoriaController.create}" value="#{bundle.Save}" update="display,:SdCategoriaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdCategoriaCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdCategoriaCreateDialog.hide()"/>

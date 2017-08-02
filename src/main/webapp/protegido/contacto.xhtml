@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Aplicación de Punto de Venta"></h:outputText>
+        </ui:define>
+
+          
+        <ui:define name="body">
+            <p:panel header="Curso Integrador - Proyecto Grupal">
+                <p:panelGrid style="margin: 0 auto;">
+                    <f:facet name="header">
+                        <p:row>
+                            <p:column colspan="2">Profesor</p:column>
+                        </p:row>
+                    </f:facet>
+                    <p:row>
+                        <p:column colspan="2" style="text-align: center">
+                            SILVA UBALDO, LIZARDO
+                        </p:column>
+                    </p:row>
+                    
+                    <p:row>
+                        <p:column colspan="2" styleClass="ui-widget-header">Integrantes</p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column style="text-align: left">
+                            EDUARDO RAUL CASAÑO ARZAPALO
+                        </p:column>
+                        <p:column>
+                            1531337
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column style="text-align: left">
+                            JORGE BRYAN SOLIS MCLELLAN
+                        </p:column>
+                        <p:column>
+                            0721350
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column style="text-align: left">
+                            ANTHONY ARTHUR VIDAL CONTRERAS
+                        </p:column>
+                        <p:column>
+                            1614716
+                        </p:column>
+                    </p:row>
+
+                </p:panelGrid>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -12,12 +12,14 @@
             <h:form id="SsPerfilEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ssPerfilController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditSsPerfilLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{ssPerfilController.selected.id}" title="#{bundle.EditSsPerfilTitle_id}" required="true" requiredMessage="#{bundle.EditSsPerfilRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditSsPerfilLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{ssPerfilController.selected.nombre}" title="#{bundle.EditSsPerfilTitle_nombre}" />
                         <p:outputLabel value="#{bundle.EditSsPerfilLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{ssPerfilController.selected.estado}" title="#{bundle.EditSsPerfilTitle_estado}" />
+                        
+                        <p:selectOneMenu id="estado" value="#{ssPerfilController.selected.estado}" required="true" requiredMessage="#{bundle.EditSsPerfilTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{ssPerfilController.update}" value="#{bundle.Save}" update="display,:SsPerfilListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SsPerfilEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SsPerfilEditDialog.hide()"/>

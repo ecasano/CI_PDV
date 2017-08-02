@@ -6,6 +6,7 @@
 package com.pdv.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -39,6 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "SdProducto.findById", query = "SELECT s FROM SdProducto s WHERE s.id = :id")
     , @NamedQuery(name = "SdProducto.findByCodigo", query = "SELECT s FROM SdProducto s WHERE s.codigo = :codigo")
     , @NamedQuery(name = "SdProducto.findByNombre", query = "SELECT s FROM SdProducto s WHERE s.nombre = :nombre")
+    , @NamedQuery(name = "SdProducto.findByPrecio", query = "SELECT s FROM SdProducto s WHERE s.precio = :precio")
+    , @NamedQuery(name = "SdProducto.findByStock", query = "SELECT s FROM SdProducto s WHERE s.stock = :stock")
     , @NamedQuery(name = "SdProducto.findByFechaRegistro", query = "SELECT s FROM SdProducto s WHERE s.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "SdProducto.findByUsuarioRegistro", query = "SELECT s FROM SdProducto s WHERE s.usuarioRegistro = :usuarioRegistro")
     , @NamedQuery(name = "SdProducto.findByFechaActualizacion", query = "SELECT s FROM SdProducto s WHERE s.fechaActualizacion = :fechaActualizacion")
@@ -58,6 +61,11 @@ public class SdProducto implements Serializable {
     @Size(max = 255)
     @Column(name = "Nombre")
     private String nombre;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "Precio")
+    private BigDecimal precio;
+    @Column(name = "Stock")
+    private Integer stock;
     @Column(name = "FechaRegistro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
@@ -110,6 +118,22 @@ public class SdProducto implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public BigDecimal getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Date getFechaRegistro() {
@@ -199,7 +223,8 @@ public class SdProducto implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SdProducto[ id=" + id + " ]";
+        //return "com.pdv.model.SdProducto[ id=" + id + " ]";
+        return this.nombre;
     }
     
 }

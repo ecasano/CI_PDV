@@ -12,23 +12,22 @@
             <h:form id="SdTipoCambioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdTipoCambioController.selected != null}">
+                         <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_sdTipoCambioPK_fecha}" for="sdTipoCambioPK_fecha" />
+                        <p:calendar id="sdTipoCambioPK_fecha" pattern="dd/MM/yyyy" value="#{sdTipoCambioController.selected.sdTipoCambioPK.fecha}" title="#{bundle.EditSdTipoCambioTitle_sdTipoCambioPK_fecha}" required="true" requiredMessage="#{bundle.EditSdTipoCambioRequiredMessage_sdTipoCambioPK_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_tc}" for="tc" />
+                        <p:inputText id="tc" value="#{sdTipoCambioController.selected.tc}" title="#{bundle.CreateSdTipoCambioTitle_tc}" />
+                        <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{sdTipoCambioController.selected.estado}" required="true" requiredMessage="#{bundle.CreateSdTipoCambioTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_idMoneda}" for="idMoneda" />
                         <p:selectOneMenu id="idMoneda" value="#{sdTipoCambioController.selected.idMoneda}" required="true" requiredMessage="#{bundle.EditSdTipoCambioRequiredMessage_idMoneda}">
                             <f:selectItems value="#{sdMonedaController.itemsAvailableSelectOne}"
                                            var="idMonedaItem"
                                            itemValue="#{idMonedaItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_sdTipoCambioPK_fecha}" for="sdTipoCambioPK_fecha" />
-                        <p:calendar id="sdTipoCambioPK_fecha" pattern="MM/dd/yyyy" value="#{sdTipoCambioController.selected.sdTipoCambioPK.fecha}" title="#{bundle.EditSdTipoCambioTitle_sdTipoCambioPK_fecha}" required="true" requiredMessage="#{bundle.EditSdTipoCambioRequiredMessage_sdTipoCambioPK_fecha}" showOn="button"/>
-                       <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_tc}" for="tc" />
-                        <p:inputText id="tc" value="#{sdTipoCambioController.selected.tc}" title="#{bundle.CreateSdTipoCambioTitle_tc}" />
-                        <p:outputLabel value="#{bundle.CreateSdTipoCambioLabel_estado}" for="estado" />
-                        
-                        <p:selectOneMenu id="estado" value="#{sdTipoCambioController.selected.estado}" required="true" requiredMessage="Seleccione un estado">
-                            <f:selectItem itemLabel="Activo" itemValue="1" />
-                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
-                        </p:selectOneMenu>
-                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdTipoCambioController.create}" value="#{bundle.Save}" update="display,:SdTipoCambioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdTipoCambioCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdTipoCambioCreateDialog.hide()"/>

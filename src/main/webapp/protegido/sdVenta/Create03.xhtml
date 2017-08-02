@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdVentaCreateDlg" widgetVar="SdVentaCreateDialog" modal="true" resizable="true" appendTo="@(body)" header="#{bundle.CreateSdVentaTitle}">
+            <h:form id="SdVentaCreateForm">
+                <h:panelGroup id="display">
+                    <!-- p:panelGrid columns="1" rendered="{sdVentaController.selected" != null} -->
+                        
+                        <p:fieldset legend="Datos del Documento">
+                            
+                            <p:selectOneMenu id="idTipoDocumento" value="#{sdVentaController.selected.idTipoDocumento}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idTipoDocumento}">
+                                <f:selectItems value="#{sdTipoDocumentoController.itemsAvailableSelectOne}"
+                                               var="idTipoDocumentoItem"
+                                               itemValue="#{idTipoDocumentoItem}"/>
+                            </p:selectOneMenu>
+                            
+                            <p:outputLabel value="  N° " for="serieDocumento" />
+                            <p:inputText id="serieDocumento" value="#{sdVentaController.selected.serieDocumento}" title="#{bundle.CreateSdVentaTitle_serieDocumento}" maxlength="5" size="5" />
+                            <p:outputLabel value="-" />
+                            <p:inputText id="numeroDocumento" value="#{sdVentaController.selected.numeroDocumento}" title="#{bundle.CreateSdVentaTitle_numeroDocumento}" maxlength="10" size="10" />
+
+                            <p:outputLabel value="Fecha Emisión" for="fechaDocumento" />
+                            <p:calendar id="fechaDocumento" pattern="MM/dd/yyyy" value="#{sdVentaController.selected.fechaDocumento}" title="#{bundle.EditSdVentaTitle_fechaDocumento}"  showOn="button"/>
+
+                        </p:fieldset>
+                        
+                        
+                        
+                      
+                        
+                        <p:fieldset legend="Datos del Cliente">
+                            <p:outputLabel value="Tipo Documento Cliente" for="tipoDocumentoCliente" />
+                            <p:inputText id="tipoDocumentoCliente" value="#{sdVentaController.selected.tipoDocumentoCliente}" title="#{bundle.CreateSdVentaTitle_tipoDocumentoCliente}" />
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_nroDocumentoCliente}" for="nroDocumentoCliente" />
+                            <p:inputText id="nroDocumentoCliente" value="#{sdVentaController.selected.nroDocumentoCliente}" title="#{bundle.CreateSdVentaTitle_nroDocumentoCliente}" />
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_nombreCliente}" for="nombreCliente" />
+                            <p:inputText id="nombreCliente" value="#{sdVentaController.selected.nombreCliente}" title="#{bundle.CreateSdVentaTitle_nombreCliente}" />
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_direccionCliente}" for="direccionCliente" />
+                            <p:inputText id="direccionCliente" value="#{sdVentaController.selected.direccionCliente}" title="#{bundle.CreateSdVentaTitle_direccionCliente}" />
+                        </p:fieldset>
+                        
+                        
+                        <h:inputHidden id="estado" value="1"/>
+                        <h:inputHidden id="idPuntoVenta" value="1"/>
+                        <h:inputHidden id="idUsuario" value="1"/>
+                        <h:inputHidden id="idFormaPago" value="1"/>
+                       
+                        <p:fieldset legend="Importes">
+                            <p:outputLabel value="Moneda" for="idMoneda" />
+                            <p:selectOneMenu id="idMoneda" value="#{sdVentaController.selected.idMoneda}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idMoneda}">
+                                <f:selectItems value="#{sdMonedaController.itemsAvailableSelectOne}"
+                                               var="idMonedaItem"
+                                               itemValue="#{idMonedaItem}"/>
+                            </p:selectOneMenu>
+                            
+                            <p:outputLabel value="Tipo de Cambio" for="tipoCambio" />
+                            <p:inputText id="tipoCambio" value="#{sdVentaController.selected.tipoCambio}" title="#{bundle.CreateSdVentaTitle_tipoCambio}" />
+                        
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_subtotal}" for="subtotal" />
+                            <p:inputText id="subtotal" value="#{sdVentaController.selected.subtotal}" title="#{bundle.CreateSdVentaTitle_subtotal}" />
+
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_igv}" for="igv" />
+                            <p:inputText id="igv" value="#{sdVentaController.selected.igv}" title="#{bundle.CreateSdVentaTitle_igv}" />
+
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_total}" for="total" />
+                            <p:inputText id="total" value="#{sdVentaController.selected.total}" title="#{bundle.CreateSdVentaTitle_total}" />
+                        </p:fieldset>
+                        
+                   
+                    <!-- /p:panelGrid -->
+                    <p:commandButton actionListener="#{sdVentaController.create}" value="#{bundle.Save}" update="display,:SdVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdVentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdVentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

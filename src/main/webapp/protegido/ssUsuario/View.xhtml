@@ -12,8 +12,6 @@
             <h:form id="SsUsuarioViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ssUsuarioController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_id}"/>
-                        <h:outputText value="#{ssUsuarioController.selected.id}" title="#{bundle.ViewSsUsuarioTitle_id}"/>
                         <h:outputText value="#{bundle.ViewSsUsuarioLabel_usuario}"/>
                         <h:outputText value="#{ssUsuarioController.selected.usuario}" title="#{bundle.ViewSsUsuarioTitle_usuario}"/>
                         <h:outputText value="#{bundle.ViewSsUsuarioLabel_contrasena}"/>
@@ -22,10 +20,13 @@
                         <h:outputText value="#{ssUsuarioController.selected.nombre}" title="#{bundle.ViewSsUsuarioTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSsUsuarioLabel_correo}"/>
                         <h:outputText value="#{ssUsuarioController.selected.correo}" title="#{bundle.ViewSsUsuarioTitle_correo}"/>
-                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_estado}"/>
-                        <h:outputText value="#{ssUsuarioController.selected.estado}" title="#{bundle.ViewSsUsuarioTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_idPuntoVenta}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.idPuntoVenta}" title="#{bundle.ViewSsUsuarioTitle_idPuntoVenta}"/>
                         <h:outputText value="#{bundle.ViewSsUsuarioLabel_idPerfil}"/>
                         <h:outputText value="#{ssUsuarioController.selected.idPerfil}" title="#{bundle.ViewSsUsuarioTitle_idPerfil}"/>
+                        <h:outputText value="#{bundle.ViewSsUsuarioLabel_estado}"/>
+                        <h:outputText value="#{ssUsuarioController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSsUsuarioTitle_estado}"/>
+                        
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SsUsuarioViewDialog.hide()"/>
                 </h:panelGroup>

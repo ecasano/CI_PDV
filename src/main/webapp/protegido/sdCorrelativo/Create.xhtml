@@ -12,28 +12,39 @@
             <h:form id="SdCorrelativoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdCorrelativoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{sdCorrelativoController.selected.id}" title="#{bundle.CreateSdCorrelativoTitle_id}" required="true" requiredMessage="#{bundle.CreateSdCorrelativoRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_idPuntoVenta}" for="idPuntoVenta" />
-                        <p:inputText id="idPuntoVenta" value="#{sdCorrelativoController.selected.idPuntoVenta}" title="#{bundle.CreateSdCorrelativoTitle_idPuntoVenta}" />
+                        <p:selectOneMenu id="idPuntoVenta" value="#{sdCorrelativoController.selected.idPuntoVenta}" required="true" requiredMessage="#{bundle.EditSdCorrelativoRequiredMessage_idPuntoVenta}">
+                            <f:selectItems value="#{sdPuntoVentaController.itemsAvailableSelectOne}"
+                                           var="idPuntoVentaItem"
+                                           itemValue="#{idPuntoVentaItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_idTipoDocumento}" for="idTipoDocumento" />
-                        <p:inputText id="idTipoDocumento" value="#{sdCorrelativoController.selected.idTipoDocumento}" title="#{bundle.CreateSdCorrelativoTitle_idTipoDocumento}" />
-                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_serieInicial}" for="serieInicial" />
-                        <p:inputText id="serieInicial" value="#{sdCorrelativoController.selected.serieInicial}" title="#{bundle.CreateSdCorrelativoTitle_serieInicial}" />
-                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_numeroInicial}" for="numeroInicial" />
-                        <p:inputText id="numeroInicial" value="#{sdCorrelativoController.selected.numeroInicial}" title="#{bundle.CreateSdCorrelativoTitle_numeroInicial}" />
-                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_serieFinal}" for="serieFinal" />
-                        <p:inputText id="serieFinal" value="#{sdCorrelativoController.selected.serieFinal}" title="#{bundle.CreateSdCorrelativoTitle_serieFinal}" />
-                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_numeroFinal}" for="numeroFinal" />
-                        <p:inputText id="numeroFinal" value="#{sdCorrelativoController.selected.numeroFinal}" title="#{bundle.CreateSdCorrelativoTitle_numeroFinal}" />
+                        <p:selectOneMenu id="idTipoDocumento" value="#{sdCorrelativoController.selected.idTipoDocumento}" required="true" requiredMessage="#{bundle.EditSdCorrelativoRequiredMessage_idTipoDocumento}">
+                            <f:selectItems value="#{sdTipoDocumentoController.itemsAvailableSelectOne}"
+                                           var="idTipoDocumentoItem"
+                                           itemValue="#{idTipoDocumentoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Serie-Número Inicial" />
+                        <p:panelGrid columns="2">
+                            <p:inputText id="serieInicial" value="#{sdCorrelativoController.selected.serieInicial}" title="#{bundle.CreateSdCorrelativoTitle_serieInicial}" size="4" maxlength="4" />
+                            <p:inputText id="numeroInicial" value="#{sdCorrelativoController.selected.numeroInicial}" title="#{bundle.CreateSdCorrelativoTitle_numeroInicial}" size="8" maxlength="8"  />
+                        </p:panelGrid>
+                        
+                        <p:outputLabel value="Serie-Número Final" />
+                        <p:panelGrid columns="2">
+                            <p:inputText id="serieFinal" value="#{sdCorrelativoController.selected.serieFinal}" title="#{bundle.CreateSdCorrelativoTitle_serieFinal}" size="4" maxlength="4" />
+                             <p:inputText id="numeroFinal" value="#{sdCorrelativoController.selected.numeroFinal}" title="#{bundle.CreateSdCorrelativoTitle_numeroFinal}" size="8" maxlength="8" />
+                        </p:panelGrid>
+                        
                         <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_fecha}" for="fecha" />
-                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{sdCorrelativoController.selected.fecha}" title="#{bundle.EditSdCorrelativoTitle_fecha}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_fechaRegistro}" for="fechaRegistro" />
-                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdCorrelativoController.selected.fechaRegistro}" title="#{bundle.EditSdCorrelativoTitle_fechaRegistro}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_usuarioRegistro}" for="usuarioRegistro" />
-                        <p:inputText id="usuarioRegistro" value="#{sdCorrelativoController.selected.usuarioRegistro}" title="#{bundle.CreateSdCorrelativoTitle_usuarioRegistro}" />
+                        <p:calendar id="fecha" pattern="dd/MM/yyyy" value="#{sdCorrelativoController.selected.fecha}" title="#{bundle.EditSdCorrelativoTitle_fecha}"  showOn="button"/>
+                        
                         <p:outputLabel value="#{bundle.CreateSdCorrelativoLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{sdCorrelativoController.selected.estado}" title="#{bundle.CreateSdCorrelativoTitle_estado}" />
+                        <p:selectOneMenu id="estado" value="#{sdCorrelativoController.selected.estado}" required="true" requiredMessage="#{bundle.CreateSdCorrelativoTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdCorrelativoController.create}" value="#{bundle.Save}" update="display,:SdCorrelativoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdCorrelativoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdCorrelativoCreateDialog.hide()"/>

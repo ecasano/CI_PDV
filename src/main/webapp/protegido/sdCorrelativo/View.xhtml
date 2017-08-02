@@ -12,12 +12,6 @@
             <h:form id="SdCorrelativoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdCorrelativoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdCorrelativoLabel_id}"/>
-                        <h:outputText value="#{sdCorrelativoController.selected.id}" title="#{bundle.ViewSdCorrelativoTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewSdCorrelativoLabel_idPuntoVenta}"/>
-                        <h:outputText value="#{sdCorrelativoController.selected.idPuntoVenta}" title="#{bundle.ViewSdCorrelativoTitle_idPuntoVenta}"/>
-                        <h:outputText value="#{bundle.ViewSdCorrelativoLabel_idTipoDocumento}"/>
-                        <h:outputText value="#{sdCorrelativoController.selected.idTipoDocumento}" title="#{bundle.ViewSdCorrelativoTitle_idTipoDocumento}"/>
                         <h:outputText value="#{bundle.ViewSdCorrelativoLabel_serieInicial}"/>
                         <h:outputText value="#{sdCorrelativoController.selected.serieInicial}" title="#{bundle.ViewSdCorrelativoTitle_serieInicial}"/>
                         <h:outputText value="#{bundle.ViewSdCorrelativoLabel_numeroInicial}"/>
@@ -28,16 +22,15 @@
                         <h:outputText value="#{sdCorrelativoController.selected.numeroFinal}" title="#{bundle.ViewSdCorrelativoTitle_numeroFinal}"/>
                         <h:outputText value="#{bundle.ViewSdCorrelativoLabel_fecha}"/>
                         <h:outputText value="#{sdCorrelativoController.selected.fecha}" title="#{bundle.ViewSdCorrelativoTitle_fecha}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdCorrelativoLabel_fechaRegistro}"/>
-                        <h:outputText value="#{sdCorrelativoController.selected.fechaRegistro}" title="#{bundle.ViewSdCorrelativoTitle_fechaRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdCorrelativoLabel_usuarioRegistro}"/>
-                        <h:outputText value="#{sdCorrelativoController.selected.usuarioRegistro}" title="#{bundle.ViewSdCorrelativoTitle_usuarioRegistro}"/>
                         <h:outputText value="#{bundle.ViewSdCorrelativoLabel_estado}"/>
-                        <h:outputText value="#{sdCorrelativoController.selected.estado}" title="#{bundle.ViewSdCorrelativoTitle_estado}"/>
+                        <h:outputText value="#{sdCorrelativoController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdCorrelativoTitle_estado}"/>
+                        
+                        <h:outputText value="#{bundle.ViewSdCorrelativoLabel_idPuntoVenta}"/>
+                        <h:outputText value="#{sdCorrelativoController.selected.idPuntoVenta}" title="#{bundle.ViewSdCorrelativoTitle_idPuntoVenta}"/>
+                        <h:outputText value="#{bundle.ViewSdCorrelativoLabel_idTipoDocumento}"/>
+                        <h:outputText value="#{sdCorrelativoController.selected.idTipoDocumento}" title="#{bundle.ViewSdCorrelativoTitle_idTipoDocumento}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdCorrelativoViewDialog.hide()"/>
                 </h:panelGroup>

@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,11 +40,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "SdPuntoVenta.findByCodigo", query = "SELECT s FROM SdPuntoVenta s WHERE s.codigo = :codigo")
     , @NamedQuery(name = "SdPuntoVenta.findByDescripcion", query = "SELECT s FROM SdPuntoVenta s WHERE s.descripcion = :descripcion")
     , @NamedQuery(name = "SdPuntoVenta.findByDireccion", query = "SELECT s FROM SdPuntoVenta s WHERE s.direccion = :direccion")
-    , @NamedQuery(name = "SdPuntoVenta.findByUbigeo", query = "SELECT s FROM SdPuntoVenta s WHERE s.ubigeo = :ubigeo")
     , @NamedQuery(name = "SdPuntoVenta.findByIdEmpresa", query = "SELECT s FROM SdPuntoVenta s WHERE s.idEmpresa = :idEmpresa")
+    , @NamedQuery(name = "SdPuntoVenta.findByEstado", query = "SELECT s FROM SdPuntoVenta s WHERE s.estado = :estado")
     , @NamedQuery(name = "SdPuntoVenta.findByFechaRegistro", query = "SELECT s FROM SdPuntoVenta s WHERE s.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "SdPuntoVenta.findByUsuarioRegistro", query = "SELECT s FROM SdPuntoVenta s WHERE s.usuarioRegistro = :usuarioRegistro")
-    , @NamedQuery(name = "SdPuntoVenta.findByEstado", query = "SELECT s FROM SdPuntoVenta s WHERE s.estado = :estado")})
+    , @NamedQuery(name = "SdPuntoVenta.findByFechaActualizacion", query = "SELECT s FROM SdPuntoVenta s WHERE s.fechaActualizacion = :fechaActualizacion")
+    , @NamedQuery(name = "SdPuntoVenta.findByUsuarioActualizacion", query = "SELECT s FROM SdPuntoVenta s WHERE s.usuarioActualizacion = :usuarioActualizacion")})
 public class SdPuntoVenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,19 +63,29 @@ public class SdPuntoVenta implements Serializable {
     @Size(max = 255)
     @Column(name = "Direccion")
     private String direccion;
-    @Size(max = 6)
-    @Column(name = "Ubigeo")
-    private String ubigeo;
     @Column(name = "IdEmpresa")
     private Integer idEmpresa;
+    @Column(name = "Estado")
+    private Integer estado;
     @Column(name = "FechaRegistro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
     @Size(max = 45)
     @Column(name = "UsuarioRegistro")
     private String usuarioRegistro;
-    @Column(name = "Estado")
-    private Integer estado;
+    @Column(name = "FechaActualizacion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaActualizacion;
+    @Size(max = 45)
+    @Column(name = "UsuarioActualizacion")
+    private String usuarioActualizacion;
+    @JoinColumn(name = "IdUbiego", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private SsUbiego idUbiego;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPuntoVenta")
+    private Collection<SsUsuario> ssUsuarioCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPuntoVenta")
+    private Collection<SdCorrelativo> sdCorrelativoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPuntoVenta")
     private Collection<SdVenta> sdVentaCollection;
 
@@ -115,20 +128,20 @@ public class SdPuntoVenta implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getUbigeo() {
-        return ubigeo;
-    }
-
-    public void setUbigeo(String ubigeo) {
-        this.ubigeo = ubigeo;
-    }
-
     public Integer getIdEmpresa() {
         return idEmpresa;
     }
 
     public void setIdEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 
     public Date getFechaRegistro() {
@@ -147,12 +160,46 @@ public class SdPuntoVenta implements Serializable {
         this.usuarioRegistro = usuarioRegistro;
     }
 
-    public Integer getEstado() {
-        return estado;
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
     }
 
-    public void setEstado(Integer estado) {
-        this.estado = estado;
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    public String getUsuarioActualizacion() {
+        return usuarioActualizacion;
+    }
+
+    public void setUsuarioActualizacion(String usuarioActualizacion) {
+        this.usuarioActualizacion = usuarioActualizacion;
+    }
+
+    public SsUbiego getIdUbiego() {
+        return idUbiego;
+    }
+
+    public void setIdUbiego(SsUbiego idUbiego) {
+        this.idUbiego = idUbiego;
+    }
+
+    @XmlTransient
+    public Collection<SsUsuario> getSsUsuarioCollection() {
+        return ssUsuarioCollection;
+    }
+
+    public void setSsUsuarioCollection(Collection<SsUsuario> ssUsuarioCollection) {
+        this.ssUsuarioCollection = ssUsuarioCollection;
+    }
+
+    @XmlTransient
+    public Collection<SdCorrelativo> getSdCorrelativoCollection() {
+        return sdCorrelativoCollection;
+    }
+
+    public void setSdCorrelativoCollection(Collection<SdCorrelativo> sdCorrelativoCollection) {
+        this.sdCorrelativoCollection = sdCorrelativoCollection;
     }
 
     @XmlTransient
@@ -186,7 +233,8 @@ public class SdPuntoVenta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SdPuntoVenta[ id=" + id + " ]";
+        //return "com.pdv.model.SdPuntoVenta[ id=" + id + " ]";
+        return this.descripcion;
     }
     
 }

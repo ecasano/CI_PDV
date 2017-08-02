@@ -12,20 +12,17 @@
             <h:form id="SdTipoCambioViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdTipoCambioController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdTipoCambioLabel_idMoneda}"/>
-                        <h:outputText value="#{sdTipoCambioController.selected.idMoneda.nombre}" title="#{bundle.ViewSdTipoCambioTitle_idMoneda}"/>
-                        
-                        <h:outputText value="#{bundle.ViewSdTipoCambioLabel_sdTipoCambioPK_fecha}"/>
+                         <h:outputText value="#{bundle.ViewSdTipoCambioLabel_sdTipoCambioPK_fecha}"/>
                         <h:outputText value="#{sdTipoCambioController.selected.sdTipoCambioPK.fecha}" title="#{bundle.ViewSdTipoCambioTitle_sdTipoCambioPK_fecha}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewSdTipoCambioLabel_tc}"/>
                         <h:outputText value="#{sdTipoCambioController.selected.tc}" title="#{bundle.ViewSdTipoCambioTitle_tc}"/>
                         <h:outputText value="#{bundle.ViewSdTipoCambioLabel_estado}"/>
                         <h:outputText value="#{sdTipoCambioController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdTipoCambioTitle_estado}"/>
                         
-                        
-                        
+                        <h:outputText value="#{bundle.ViewSdTipoCambioLabel_idMoneda}"/>
+                        <h:outputText value="#{sdTipoCambioController.selected.idMoneda}" title="#{bundle.ViewSdTipoCambioTitle_idMoneda}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdTipoCambioViewDialog.hide()"/>
                 </h:panelGroup>

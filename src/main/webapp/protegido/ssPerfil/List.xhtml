@@ -29,12 +29,6 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSsPerfilTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSsPerfilTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
@@ -43,7 +37,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSsPerfilTitle_estado}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estado}"/>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ssPerfilController.prepareCreate}" update=":SsPerfilCreateForm" oncomplete="PF('SsPerfilCreateDialog').show()"/>

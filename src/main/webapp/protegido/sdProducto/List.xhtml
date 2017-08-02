@@ -29,12 +29,6 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdProductoTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdProductoTitle_codigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
@@ -47,38 +41,17 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdProductoTitle_fechaRegistro}"/>
+                                <h:outputText value="#{bundle.ListSdProductoTitle_precio}"/>
                             </f:facet>
-                            <h:outputText value="#{item.fechaRegistro}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
+                            <h:outputText value="#{item.precio}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdProductoTitle_usuarioRegistro}"/>
+                                <h:outputText value="#{bundle.ListSdProductoTitle_stock}"/>
                             </f:facet>
-                            <h:outputText value="#{item.usuarioRegistro}"/>
+                            <h:outputText value="#{item.stock}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdProductoTitle_fechaActualizacion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaActualizacion}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdProductoTitle_usuarioActualizacion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.usuarioActualizacion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdProductoTitle_estado}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.estado}"/>
-                        </p:column>
+                       
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdProductoTitle_idCategoria}"/>
@@ -91,6 +64,14 @@
                             </f:facet>
                             <h:outputText value="#{item.idUnidad}"/>
                         </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdProductoTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
+                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdProductoController.prepareCreate}" update=":SdProductoCreateForm" oncomplete="PF('SdProductoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SdProductoViewForm" oncomplete="PF('SdProductoViewDialog').show()" disabled="#{empty sdProductoController.selected}"/>

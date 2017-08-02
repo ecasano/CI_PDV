@@ -12,30 +12,24 @@
             <h:form id="SdProductoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdProductoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdProductoLabel_id}"/>
-                        <h:outputText value="#{sdProductoController.selected.id}" title="#{bundle.ViewSdProductoTitle_id}"/>
                         <h:outputText value="#{bundle.ViewSdProductoLabel_codigo}"/>
                         <h:outputText value="#{sdProductoController.selected.codigo}" title="#{bundle.ViewSdProductoTitle_codigo}"/>
                         <h:outputText value="#{bundle.ViewSdProductoLabel_nombre}"/>
                         <h:outputText value="#{sdProductoController.selected.nombre}" title="#{bundle.ViewSdProductoTitle_nombre}"/>
-                        <h:outputText value="#{bundle.ViewSdProductoLabel_fechaRegistro}"/>
-                        <h:outputText value="#{sdProductoController.selected.fechaRegistro}" title="#{bundle.ViewSdProductoTitle_fechaRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdProductoLabel_usuarioRegistro}"/>
-                        <h:outputText value="#{sdProductoController.selected.usuarioRegistro}" title="#{bundle.ViewSdProductoTitle_usuarioRegistro}"/>
-                        <h:outputText value="#{bundle.ViewSdProductoLabel_fechaActualizacion}"/>
-                        <h:outputText value="#{sdProductoController.selected.fechaActualizacion}" title="#{bundle.ViewSdProductoTitle_fechaActualizacion}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdProductoLabel_usuarioActualizacion}"/>
-                        <h:outputText value="#{sdProductoController.selected.usuarioActualizacion}" title="#{bundle.ViewSdProductoTitle_usuarioActualizacion}"/>
-                        <h:outputText value="#{bundle.ViewSdProductoLabel_estado}"/>
-                        <h:outputText value="#{sdProductoController.selected.estado}" title="#{bundle.ViewSdProductoTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewSdProductoLabel_precio}"/>
+                        <h:outputText value="#{sdProductoController.selected.precio}" title="#{bundle.ViewSdProductoTitle_precio}"/>
+                        <h:outputText value="#{bundle.ViewSdProductoLabel_stock}"/>
+                        <h:outputText value="#{sdProductoController.selected.stock}" title="#{bundle.ViewSdProductoTitle_stock}"/>
+
+                        
                         <h:outputText value="#{bundle.ViewSdProductoLabel_idCategoria}"/>
                         <h:outputText value="#{sdProductoController.selected.idCategoria}" title="#{bundle.ViewSdProductoTitle_idCategoria}"/>
                         <h:outputText value="#{bundle.ViewSdProductoLabel_idUnidad}"/>
                         <h:outputText value="#{sdProductoController.selected.idUnidad}" title="#{bundle.ViewSdProductoTitle_idUnidad}"/>
+                        
+                        <h:outputText value="#{bundle.ViewSdProductoLabel_estado}"/>
+                        <h:outputText value="#{sdProductoController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdProductoTitle_estado}"/>
+                        
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdProductoViewDialog.hide()"/>
                 </h:panelGroup>

@@ -16,8 +16,12 @@
                         <p:inputText id="sdVentaDetallePK_idItem" value="#{sdVentaDetalleController.selected.sdVentaDetallePK.idItem}" title="#{bundle.EditSdVentaDetalleTitle_sdVentaDetallePK_idItem}" required="true" requiredMessage="#{bundle.EditSdVentaDetalleRequiredMessage_sdVentaDetallePK_idItem}"/>
                         <p:outputLabel value="#{bundle.EditSdVentaDetalleLabel_cantidad}" for="cantidad" />
                         <p:inputText id="cantidad" value="#{sdVentaDetalleController.selected.cantidad}" title="#{bundle.EditSdVentaDetalleTitle_cantidad}" />
-                        <p:outputLabel value="#{bundle.EditSdVentaDetalleLabel_monto}" for="monto" />
-                        <p:inputText id="monto" value="#{sdVentaDetalleController.selected.monto}" title="#{bundle.EditSdVentaDetalleTitle_monto}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaDetalleLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{sdVentaDetalleController.selected.precio}" title="#{bundle.EditSdVentaDetalleTitle_precio}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaDetalleLabel_importe}" for="importe" />
+                        <p:inputText id="importe" value="#{sdVentaDetalleController.selected.importe}" title="#{bundle.EditSdVentaDetalleTitle_importe}" />
+                        <p:outputLabel value="#{bundle.EditSdVentaDetalleLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdVentaDetalleController.selected.estado}" title="#{bundle.EditSdVentaDetalleTitle_estado}" />
                         <p:outputLabel value="#{bundle.EditSdVentaDetalleLabel_idProducto}" for="idProducto" />
                         <p:selectOneMenu id="idProducto" value="#{sdVentaDetalleController.selected.idProducto}" required="true" requiredMessage="#{bundle.EditSdVentaDetalleRequiredMessage_idProducto}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

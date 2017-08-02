@@ -1,9 +1,9 @@
 package com.pdv.controller;
 
-import com.pdv.model.SdEmpresa;
+import com.pdv.model.SsUbiego;
 import com.pdv.controller.util.JsfUtil;
 import com.pdv.controller.util.JsfUtil.PersistAction;
-import com.pdv.ejb.SdEmpresaFacade;
+import com.pdv.ejb.SsUbiegoFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("sdEmpresaController")
+@Named("ssUbiegoController")
 @SessionScoped
-public class SdEmpresaController implements Serializable {
+public class SsUbiegoController implements Serializable {
 
     @EJB
-    private com.pdv.ejb.SdEmpresaFacade ejbFacade;
-    private List<SdEmpresa> items = null;
-    private SdEmpresa selected;
+    private com.pdv.ejb.SsUbiegoFacade ejbFacade;
+    private List<SsUbiego> items = null;
+    private SsUbiego selected;
 
-    public SdEmpresaController() {
+    public SsUbiegoController() {
     }
 
-    public SdEmpresa getSelected() {
+    public SsUbiego getSelected() {
         return selected;
     }
 
-    public void setSelected(SdEmpresa selected) {
+    public void setSelected(SsUbiego selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class SdEmpresaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private SdEmpresaFacade getFacade() {
+    private SsUbiegoFacade getFacade() {
         return ejbFacade;
     }
 
-    public SdEmpresa prepareCreate() {
-        selected = new SdEmpresa();
+    public SsUbiego prepareCreate() {
+        selected = new SsUbiego();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SdEmpresaCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SsUbiegoCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SdEmpresaUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SsUbiegoUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SdEmpresaDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SsUbiegoDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<SdEmpresa> getItems() {
+    public List<SsUbiego> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,38 +109,38 @@ public class SdEmpresaController implements Serializable {
         }
     }
 
-    public SdEmpresa getSdEmpresa(java.lang.Integer id) {
+    public SsUbiego getSsUbiego(java.lang.String id) {
         return getFacade().find(id);
     }
 
-    public List<SdEmpresa> getItemsAvailableSelectMany() {
+    public List<SsUbiego> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<SdEmpresa> getItemsAvailableSelectOne() {
+    public List<SsUbiego> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = SdEmpresa.class)
-    public static class SdEmpresaControllerConverter implements Converter {
+    @FacesConverter(forClass = SsUbiego.class)
+    public static class SsUbiegoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            SdEmpresaController controller = (SdEmpresaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "sdEmpresaController");
-            return controller.getSdEmpresa(getKey(value));
+            SsUbiegoController controller = (SsUbiegoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "ssUbiegoController");
+            return controller.getSsUbiego(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        java.lang.String getKey(String value) {
+            java.lang.String key;
+            key = value;
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(java.lang.String value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -151,11 +151,11 @@ public class SdEmpresaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof SdEmpresa) {
-                SdEmpresa o = (SdEmpresa) object;
+            if (object instanceof SsUbiego) {
+                SsUbiego o = (SsUbiego) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), SdEmpresa.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), SsUbiego.class.getName()});
                 return null;
             }
         }

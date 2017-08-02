@@ -20,16 +20,22 @@
                         <p:inputText id="descripcion" value="#{sdPuntoVentaController.selected.descripcion}" title="#{bundle.EditSdPuntoVentaTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditSdPuntoVentaLabel_direccion}" for="direccion" />
                         <p:inputText id="direccion" value="#{sdPuntoVentaController.selected.direccion}" title="#{bundle.EditSdPuntoVentaTitle_direccion}" />
-                        <p:outputLabel value="#{bundle.EditSdPuntoVentaLabel_ubigeo}" for="ubigeo" />
-                        <p:inputText id="ubigeo" value="#{sdPuntoVentaController.selected.ubigeo}" title="#{bundle.EditSdPuntoVentaTitle_ubigeo}" />
                         <p:outputLabel value="#{bundle.EditSdPuntoVentaLabel_idEmpresa}" for="idEmpresa" />
                         <p:inputText id="idEmpresa" value="#{sdPuntoVentaController.selected.idEmpresa}" title="#{bundle.EditSdPuntoVentaTitle_idEmpresa}" />
-                        <p:outputLabel value="#{bundle.EditSdPuntoVentaLabel_fechaRegistro}" for="fechaRegistro" />
-                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdPuntoVentaController.selected.fechaRegistro}" title="#{bundle.EditSdPuntoVentaTitle_fechaRegistro}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditSdPuntoVentaLabel_usuarioRegistro}" for="usuarioRegistro" />
-                        <p:inputText id="usuarioRegistro" value="#{sdPuntoVentaController.selected.usuarioRegistro}" title="#{bundle.EditSdPuntoVentaTitle_usuarioRegistro}" />
+                        
+                        
+                        <p:outputLabel value="#{bundle.EditSdPuntoVentaLabel_idUbiego}" for="idUbiego" />
+                        <p:selectOneMenu id="idUbiego" value="#{sdPuntoVentaController.selected.idUbiego}" required="true" requiredMessage="#{bundle.EditSdPuntoVentaRequiredMessage_idUbiego}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ssUbiegoController.itemsAvailableSelectOne}"
+                                           var="idUbiegoItem"
+                                           itemValue="#{idUbiegoItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditSdPuntoVentaLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{sdPuntoVentaController.selected.estado}" title="#{bundle.EditSdPuntoVentaTitle_estado}" />
+                        <p:selectOneMenu id="estado" value="#{sdPuntoVentaController.selected.estado}" required="true" requiredMessage="#{bundle.EditSdPuntoVentaTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdPuntoVentaController.update}" value="#{bundle.Save}" update="display,:SdPuntoVentaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SdPuntoVentaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdPuntoVentaEditDialog.hide()"/>

@@ -27,12 +27,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSsUsuarioTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSsUsuarioTitle_usuario}"/>
@@ -59,9 +54,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSsUsuarioTitle_estado}"/>
+                                <h:outputText value="#{bundle.ListSsUsuarioTitle_idPuntoVenta}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estado}"/>
+                            <h:outputText value="#{item.idPuntoVenta}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -69,6 +64,13 @@
                             </f:facet>
                             <h:outputText value="#{item.idPerfil}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSsUsuarioTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
+                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ssUsuarioController.prepareCreate}" update=":SsUsuarioCreateForm" oncomplete="PF('SsUsuarioCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SsUsuarioViewForm" oncomplete="PF('SsUsuarioViewDialog').show()" disabled="#{empty ssUsuarioController.selected}"/>

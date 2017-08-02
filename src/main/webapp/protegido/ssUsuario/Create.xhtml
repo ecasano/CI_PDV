@@ -9,31 +9,53 @@
     <ui:composition>
 
         <p:dialog id="SsUsuarioCreateDlg" widgetVar="SsUsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSsUsuarioTitle}">
+            
             <h:form id="SsUsuarioCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{ssUsuarioController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{ssUsuarioController.selected.id}" title="#{bundle.CreateSsUsuarioTitle_id}" required="true" requiredMessage="#{bundle.CreateSsUsuarioRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_usuario}" for="usuario" />
-                        <p:inputText id="usuario" value="#{ssUsuarioController.selected.usuario}" title="#{bundle.CreateSsUsuarioTitle_usuario}" />
-                        <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_contrasena}" for="contrasena" />
-                        <p:inputText id="contrasena" value="#{ssUsuarioController.selected.contrasena}" title="#{bundle.CreateSsUsuarioTitle_contrasena}" />
-                        <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{ssUsuarioController.selected.nombre}" title="#{bundle.CreateSsUsuarioTitle_nombre}" />
-                        <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_correo}" for="correo" />
-                        <p:inputText id="correo" value="#{ssUsuarioController.selected.correo}" title="#{bundle.CreateSsUsuarioTitle_correo}" />
-                        <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{ssUsuarioController.selected.estado}" title="#{bundle.CreateSsUsuarioTitle_estado}" />
-                        <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_idPerfil}" for="idPerfil" />
-                        <p:selectOneMenu id="idPerfil" value="#{ssUsuarioController.selected.idPerfil}" required="true" requiredMessage="#{bundle.EditSsUsuarioRequiredMessage_idPerfil}">
-                            <f:selectItems value="#{ssPerfilController.itemsAvailableSelectOne}"
-                                           var="idPerfilItem"
-                                           itemValue="#{idPerfilItem}"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{ssUsuarioController.create}" value="#{bundle.Save}" update="display,:SsUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SsUsuarioCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="SsUsuarioCreateDialog.hide()"/>
-                </h:panelGroup>
+                
+                <p:layout style="min-width:400px;min-height:200px;">
+                    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+                        <h:panelGroup id="display">
+                            <p:panelGrid columns="2" rendered="#{ssUsuarioController.selected != null}">
+                                <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_usuario}" for="usuario" />
+                                <p:inputText id="usuario" value="#{ssUsuarioController.selected.usuario}" title="#{bundle.CreateSsUsuarioTitle_usuario}" />
+                                <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_contrasena}" for="contrasena" />
+                                <p:inputText id="contrasena" value="#{ssUsuarioController.selected.contrasena}" title="#{bundle.CreateSsUsuarioTitle_contrasena}" />
+                                <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_nombre}" for="nombre" />
+                                <p:inputText id="nombre" value="#{ssUsuarioController.selected.nombre}" title="#{bundle.CreateSsUsuarioTitle_nombre}" />
+                                <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_correo}" for="correo" />
+                                <p:inputText id="correo" value="#{ssUsuarioController.selected.correo}" title="#{bundle.CreateSsUsuarioTitle_correo}" />
+
+                                <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_idPuntoVenta}" for="idPuntoVenta" />
+                                <p:selectOneMenu id="idPuntoVenta" value="#{ssUsuarioController.selected.idPuntoVenta}" required="true" requiredMessage="#{bundle.EditSsUsuarioRequiredMessage_idPuntoVenta}">
+                                    <f:selectItems value="#{sdPuntoVentaController.itemsAvailableSelectOne}"
+                                                   var="idPuntoVentaItem"
+                                                   itemValue="#{idPuntoVentaItem}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_idPerfil}" for="idPerfil" />
+                                <p:selectOneMenu id="idPerfil" value="#{ssUsuarioController.selected.idPerfil}" required="true" requiredMessage="#{bundle.EditSsUsuarioRequiredMessage_idPerfil}">
+                                    <f:selectItems value="#{ssPerfilController.itemsAvailableSelectOne}"
+                                                   var="idPerfilItem"
+                                                   itemValue="#{idPerfilItem}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_estado}" for="estado" />
+
+                                <p:selectOneMenu id="estado" value="#{ssUsuarioController.selected.estado}" required="true" requiredMessage="#{bundle.CreateSsUsuarioTitle_estado}">
+                                        <f:selectItem itemLabel="Activo" itemValue="1" />
+                                        <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+                            <p:commandButton actionListener="#{ssUsuarioController.create}" value="#{bundle.Save}" update="display,:SsUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SsUsuarioCreateDialog');"/>
+                            <p:commandButton value="#{bundle.Cancel}" onclick="SsUsuarioCreateDialog.hide()"/>
+                        </h:panelGroup>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        Center
+                    </p:layoutUnit>
+                </p:layout>
+                
+                
             </h:form>
         </p:dialog>
 

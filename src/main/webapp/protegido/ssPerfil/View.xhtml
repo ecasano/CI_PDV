@@ -12,12 +12,11 @@
             <h:form id="SsPerfilViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ssPerfilController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSsPerfilLabel_id}"/>
-                        <h:outputText value="#{ssPerfilController.selected.id}" title="#{bundle.ViewSsPerfilTitle_id}"/>
+                        
                         <h:outputText value="#{bundle.ViewSsPerfilLabel_nombre}"/>
                         <h:outputText value="#{ssPerfilController.selected.nombre}" title="#{bundle.ViewSsPerfilTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSsPerfilLabel_estado}"/>
-                        <h:outputText value="#{ssPerfilController.selected.estado}" title="#{bundle.ViewSsPerfilTitle_estado}"/>
+                        <h:outputText value="#{ssPerfilController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSsPerfilTitle_estado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SsPerfilViewDialog.hide()"/>
                 </h:panelGroup>

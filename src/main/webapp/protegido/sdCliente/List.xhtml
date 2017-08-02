@@ -27,12 +27,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdClienteTitle_tipoDocumento}"/>
@@ -47,21 +42,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_nombres}"/>
+                                <h:outputText value="#{bundle.ListSdClienteTitle_nombre}"/>
                             </f:facet>
-                            <h:outputText value="#{item.nombres}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_apellidoPaterno}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.apellidoPaterno}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_apellidoMaterno}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.apellidoMaterno}"/>
+                            <h:outputText value="#{item.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -77,43 +60,29 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdClienteTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdClienteTitle_contacto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contacto}"/>
+                        </p:column>
+                        
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdClienteTitle_idUbigeo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUbigeo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdClienteTitle_estado}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estado}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_fechaRegistro}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaRegistro}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_usuarioRegistro}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.usuarioRegistro}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_fechaActualizacion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaActualizacion}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_usuarioActualizacion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.usuarioActualizacion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdClienteTitle_ubigeo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ubigeo}"/>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdClienteController.prepareCreate}" update=":SdClienteCreateForm" oncomplete="PF('SdClienteCreateDialog').show()"/>

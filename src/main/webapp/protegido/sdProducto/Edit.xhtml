@@ -18,16 +18,12 @@
                         <p:inputText id="codigo" value="#{sdProductoController.selected.codigo}" title="#{bundle.EditSdProductoTitle_codigo}" />
                         <p:outputLabel value="#{bundle.EditSdProductoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{sdProductoController.selected.nombre}" title="#{bundle.EditSdProductoTitle_nombre}" />
-                        <p:outputLabel value="#{bundle.EditSdProductoLabel_fechaRegistro}" for="fechaRegistro" />
-                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdProductoController.selected.fechaRegistro}" title="#{bundle.EditSdProductoTitle_fechaRegistro}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditSdProductoLabel_usuarioRegistro}" for="usuarioRegistro" />
-                        <p:inputText id="usuarioRegistro" value="#{sdProductoController.selected.usuarioRegistro}" title="#{bundle.EditSdProductoTitle_usuarioRegistro}" />
-                        <p:outputLabel value="#{bundle.EditSdProductoLabel_fechaActualizacion}" for="fechaActualizacion" />
-                        <p:calendar id="fechaActualizacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdProductoController.selected.fechaActualizacion}" title="#{bundle.EditSdProductoTitle_fechaActualizacion}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditSdProductoLabel_usuarioActualizacion}" for="usuarioActualizacion" />
-                        <p:inputText id="usuarioActualizacion" value="#{sdProductoController.selected.usuarioActualizacion}" title="#{bundle.EditSdProductoTitle_usuarioActualizacion}" />
-                        <p:outputLabel value="#{bundle.EditSdProductoLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{sdProductoController.selected.estado}" title="#{bundle.EditSdProductoTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditSdProductoLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{sdProductoController.selected.precio}" title="#{bundle.EditSdProductoTitle_precio}" />
+                        <p:outputLabel value="#{bundle.EditSdProductoLabel_stock}" for="stock" />
+                        <p:inputText id="stock" value="#{sdProductoController.selected.stock}" title="#{bundle.EditSdProductoTitle_stock}" />
+                        
+                        
                         <p:outputLabel value="#{bundle.EditSdProductoLabel_idCategoria}" for="idCategoria" />
                         <p:selectOneMenu id="idCategoria" value="#{sdProductoController.selected.idCategoria}" required="true" requiredMessage="#{bundle.EditSdProductoRequiredMessage_idCategoria}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -41,6 +37,12 @@
                             <f:selectItems value="#{sdUnidadController.itemsAvailableSelectOne}"
                                            var="idUnidadItem"
                                            itemValue="#{idUnidadItem}"/>
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.EditSdProductoLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{sdProductoController.selected.estado}" required="true" requiredMessage="#{bundle.EditSdProductoTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdProductoController.update}" value="#{bundle.Save}" update="display,:SdProductoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SdProductoEditDialog');"/>

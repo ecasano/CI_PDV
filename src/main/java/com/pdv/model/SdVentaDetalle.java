@@ -29,7 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "SdVentaDetalle.findByIdVenta", query = "SELECT s FROM SdVentaDetalle s WHERE s.sdVentaDetallePK.idVenta = :idVenta")
     , @NamedQuery(name = "SdVentaDetalle.findByIdItem", query = "SELECT s FROM SdVentaDetalle s WHERE s.sdVentaDetallePK.idItem = :idItem")
     , @NamedQuery(name = "SdVentaDetalle.findByCantidad", query = "SELECT s FROM SdVentaDetalle s WHERE s.cantidad = :cantidad")
-    , @NamedQuery(name = "SdVentaDetalle.findByMonto", query = "SELECT s FROM SdVentaDetalle s WHERE s.monto = :monto")})
+    , @NamedQuery(name = "SdVentaDetalle.findByPrecio", query = "SELECT s FROM SdVentaDetalle s WHERE s.precio = :precio")
+    , @NamedQuery(name = "SdVentaDetalle.findByImporte", query = "SELECT s FROM SdVentaDetalle s WHERE s.importe = :importe")
+    , @NamedQuery(name = "SdVentaDetalle.findByEstado", query = "SELECT s FROM SdVentaDetalle s WHERE s.estado = :estado")})
 public class SdVentaDetalle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,8 +40,12 @@ public class SdVentaDetalle implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Cantidad")
     private BigDecimal cantidad;
-    @Column(name = "Monto")
-    private BigDecimal monto;
+    @Column(name = "Precio")
+    private BigDecimal precio;
+    @Column(name = "Importe")
+    private BigDecimal importe;
+    @Column(name = "Estado")
+    private Integer estado;
     @JoinColumn(name = "IdProducto", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdProducto idProducto;
@@ -74,12 +80,28 @@ public class SdVentaDetalle implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public BigDecimal getMonto() {
-        return monto;
+    public BigDecimal getPrecio() {
+        return precio;
     }
 
-    public void setMonto(BigDecimal monto) {
-        this.monto = monto;
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+
+    public BigDecimal getImporte() {
+        return importe;
+    }
+
+    public void setImporte(BigDecimal importe) {
+        this.importe = importe;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 
     public SdProducto getIdProducto() {

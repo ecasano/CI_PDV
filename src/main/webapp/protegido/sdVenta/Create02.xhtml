@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdVentaCreateDlg" widgetVar="SdVentaCreateDialog" modal="true" resizable="true" appendTo="@(body)" header="#{bundle.CreateSdVentaTitle}">
+            <h:form id="SdVentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:fieldset legend="" toggleable="false" toggleSpeed="500" rendered="#{sdVentaController.selected != null}">
+                        
+                        <p:panelGrid columns="14">
+                            
+                            <p:selectOneMenu id="idTipoDocumento" value="#{sdVentaController.selected.idTipoDocumento}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idTipoDocumento}">
+                                <f:selectItems value="#{sdTipoDocumentoController.itemsAvailableSelectOne}"
+                                               var="idTipoDocumentoItem"
+                                               itemValue="#{idTipoDocumentoItem}"/>
+                            </p:selectOneMenu>
+
+                            <p:spacer width="10" height="10" />
+
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_serieDocumento}" for="serieDocumento" />
+                            <p:inputText id="serieDocumento" value="#{sdVentaController.selected.serieDocumento}" title="#{bundle.CreateSdVentaTitle_serieDocumento}" maxlength="5" size="5" />
+                            <p:inputText id="numeroDocumento" value="#{sdVentaController.selected.numeroDocumento}" title="#{bundle.CreateSdVentaTitle_numeroDocumento}" maxlength="10" size="10"  />
+
+                            <p:spacer width="20" height="10" />
+
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_fechaDocumento}" for="fechaDocumento" />
+                            <p:calendar id="fechaDocumento" pattern="MM/dd/yyyy" value="#{sdVentaController.selected.fechaDocumento}" title="#{bundle.EditSdVentaTitle_fechaDocumento}"  showOn="button"/>
+
+                        </p:panelGrid>
+                        
+                        <p:panelGrid columns="20">
+                            
+                            
+                            
+                            <p:spacer width="10" height="10" />
+                            
+                            
+                            <p:spacer width="20" height="10" />
+
+                           
+                            
+                            <p:spacer width="20" height="10" />
+
+                           
+                            <p:spacer width="20" height="10" />
+
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_tipoCambio}" for="tipoCambio" />
+                            
+                            <p:spacer width="20" height="10" />
+
+                            <p:outputLabel value="#{bundle.CreateSdVentaLabel_idMoneda}" for="idMoneda" />
+                            
+                            
+                        </p:panelGrid>
+                        
+                        
+                       
+                        
+                        <h:inputHidden id="idFormaPago" value="1"/>
+                        <h:inputHidden id="idPuntoVenta" value="1"/>
+                        <h:inputHidden id="estado" value="1"/>
+                        
+                    </p:fieldset>
+                    
+                    <p:fieldset legend="" toggleable="false" toggleSpeed="500" rendered="#{sdVentaController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateSdVentaLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" disabled="true" value="#{sdVentaController.selected.subtotal}" title="#{bundle.CreateSdVentaTitle_subtotal}" />
+                        
+                        <p:spacer width="20" height="10" />
+                        
+                        <p:outputLabel value="#{bundle.CreateSdVentaLabel_igv}" for="igv" />
+                        <p:inputText id="igv" disabled="true" value="#{sdVentaController.selected.igv}" title="#{bundle.CreateSdVentaTitle_igv}" />
+                        
+                        <p:spacer width="20" height="10" />
+                        
+                        <p:outputLabel value="#{bundle.CreateSdVentaLabel_total}" for="total" />
+                        <p:inputText id="total" disabled="true" value="#{sdVentaController.selected.total}" title="#{bundle.CreateSdVentaTitle_total}" />
+                        
+                    </p:fieldset>
+                    
+                    <p:commandButton actionListener="#{sdVentaController.create}" value="#{bundle.Save}" update="display,:SdVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdVentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdVentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

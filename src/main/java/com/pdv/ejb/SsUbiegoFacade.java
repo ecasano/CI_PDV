@@ -5,7 +5,7 @@
  */
 package com.pdv.ejb;
 
-import com.pdv.model.SdEmpresa;
+import com.pdv.model.SsUbiego;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author ecasano
  */
 @Stateless
-public class SdEmpresaFacade extends AbstractFacade<SdEmpresa> {
+public class SsUbiegoFacade extends AbstractFacade<SsUbiego> {
 
     @PersistenceContext(unitName = "factoringPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class SdEmpresaFacade extends AbstractFacade<SdEmpresa> {
         return em;
     }
 
-    public SdEmpresaFacade() {
-        super(SdEmpresa.class);
+    public SsUbiegoFacade() {
+        super(SsUbiego.class);
     }
     
 }

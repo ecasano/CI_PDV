@@ -12,6 +12,7 @@
             <h:form id="SdCategoriaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdCategoriaController.selected != null}">
+                        
                         <h:outputText value="#{bundle.ViewSdCategoriaLabel_nombre}"/>
                         <h:outputText value="#{sdCategoriaController.selected.nombre}" title="#{bundle.ViewSdCategoriaTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSdCategoriaLabel_descripcion}"/>

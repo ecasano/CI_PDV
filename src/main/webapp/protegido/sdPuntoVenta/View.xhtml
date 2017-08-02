@@ -12,26 +12,21 @@
             <h:form id="SdPuntoVentaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdPuntoVentaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_id}"/>
-                        <h:outputText value="#{sdPuntoVentaController.selected.id}" title="#{bundle.ViewSdPuntoVentaTitle_id}"/>
                         <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_codigo}"/>
                         <h:outputText value="#{sdPuntoVentaController.selected.codigo}" title="#{bundle.ViewSdPuntoVentaTitle_codigo}"/>
                         <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_descripcion}"/>
                         <h:outputText value="#{sdPuntoVentaController.selected.descripcion}" title="#{bundle.ViewSdPuntoVentaTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_direccion}"/>
                         <h:outputText value="#{sdPuntoVentaController.selected.direccion}" title="#{bundle.ViewSdPuntoVentaTitle_direccion}"/>
-                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_ubigeo}"/>
-                        <h:outputText value="#{sdPuntoVentaController.selected.ubigeo}" title="#{bundle.ViewSdPuntoVentaTitle_ubigeo}"/>
                         <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_idEmpresa}"/>
                         <h:outputText value="#{sdPuntoVentaController.selected.idEmpresa}" title="#{bundle.ViewSdPuntoVentaTitle_idEmpresa}"/>
-                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_fechaRegistro}"/>
-                        <h:outputText value="#{sdPuntoVentaController.selected.fechaRegistro}" title="#{bundle.ViewSdPuntoVentaTitle_fechaRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_usuarioRegistro}"/>
-                        <h:outputText value="#{sdPuntoVentaController.selected.usuarioRegistro}" title="#{bundle.ViewSdPuntoVentaTitle_usuarioRegistro}"/>
+                        
+                        <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_idUbiego}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.idUbiego}" title="#{bundle.ViewSdPuntoVentaTitle_idUbiego}"/>
+                        
                         <h:outputText value="#{bundle.ViewSdPuntoVentaLabel_estado}"/>
-                        <h:outputText value="#{sdPuntoVentaController.selected.estado}" title="#{bundle.ViewSdPuntoVentaTitle_estado}"/>
+                        <h:outputText value="#{sdPuntoVentaController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdPuntoVentaTitle_estado}"/>
+                        
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdPuntoVentaViewDialog.hide()"/>
                 </h:panelGroup>

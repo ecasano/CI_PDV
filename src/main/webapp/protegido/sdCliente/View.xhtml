@@ -18,32 +18,20 @@
                         <h:outputText value="#{sdClienteController.selected.tipoDocumento}" title="#{bundle.ViewSdClienteTitle_tipoDocumento}"/>
                         <h:outputText value="#{bundle.ViewSdClienteLabel_nroDocumento}"/>
                         <h:outputText value="#{sdClienteController.selected.nroDocumento}" title="#{bundle.ViewSdClienteTitle_nroDocumento}"/>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_nombres}"/>
-                        <h:outputText value="#{sdClienteController.selected.nombres}" title="#{bundle.ViewSdClienteTitle_nombres}"/>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_apellidoPaterno}"/>
-                        <h:outputText value="#{sdClienteController.selected.apellidoPaterno}" title="#{bundle.ViewSdClienteTitle_apellidoPaterno}"/>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_apellidoMaterno}"/>
-                        <h:outputText value="#{sdClienteController.selected.apellidoMaterno}" title="#{bundle.ViewSdClienteTitle_apellidoMaterno}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_nombre}"/>
+                        <h:outputText value="#{sdClienteController.selected.nombre}" title="#{bundle.ViewSdClienteTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSdClienteLabel_direccion}"/>
                         <h:outputText value="#{sdClienteController.selected.direccion}" title="#{bundle.ViewSdClienteTitle_direccion}"/>
                         <h:outputText value="#{bundle.ViewSdClienteLabel_correo}"/>
                         <h:outputText value="#{sdClienteController.selected.correo}" title="#{bundle.ViewSdClienteTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_telefono}"/>
+                        <h:outputText value="#{sdClienteController.selected.telefono}" title="#{bundle.ViewSdClienteTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_contacto}"/>
+                        <h:outputText value="#{sdClienteController.selected.contacto}" title="#{bundle.ViewSdClienteTitle_contacto}"/>
                         <h:outputText value="#{bundle.ViewSdClienteLabel_estado}"/>
-                        <h:outputText value="#{sdClienteController.selected.estado}" title="#{bundle.ViewSdClienteTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_fechaRegistro}"/>
-                        <h:outputText value="#{sdClienteController.selected.fechaRegistro}" title="#{bundle.ViewSdClienteTitle_fechaRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_usuarioRegistro}"/>
-                        <h:outputText value="#{sdClienteController.selected.usuarioRegistro}" title="#{bundle.ViewSdClienteTitle_usuarioRegistro}"/>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_fechaActualizacion}"/>
-                        <h:outputText value="#{sdClienteController.selected.fechaActualizacion}" title="#{bundle.ViewSdClienteTitle_fechaActualizacion}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_usuarioActualizacion}"/>
-                        <h:outputText value="#{sdClienteController.selected.usuarioActualizacion}" title="#{bundle.ViewSdClienteTitle_usuarioActualizacion}"/>
-                        <h:outputText value="#{bundle.ViewSdClienteLabel_ubigeo}"/>
-                        <h:outputText value="#{sdClienteController.selected.ubigeo}" title="#{bundle.ViewSdClienteTitle_ubigeo}"/>
+                        <h:outputText value="#{sdClienteController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdClienteTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewSdClienteLabel_idUbigeo}"/>
+                        <h:outputText value="#{sdClienteController.selected.idUbigeo}" title="#{bundle.ViewSdClienteTitle_idUbigeo}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdClienteViewDialog.hide()"/>
                 </h:panelGroup>

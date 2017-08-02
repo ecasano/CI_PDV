@@ -16,8 +16,12 @@
                         <p:inputText id="sdVentaDetallePK_idItem" value="#{sdVentaDetalleController.selected.sdVentaDetallePK.idItem}" title="#{bundle.CreateSdVentaDetalleTitle_sdVentaDetallePK_idItem}" required="true" requiredMessage="#{bundle.CreateSdVentaDetalleRequiredMessage_sdVentaDetallePK_idItem}"/>
                         <p:outputLabel value="#{bundle.CreateSdVentaDetalleLabel_cantidad}" for="cantidad" />
                         <p:inputText id="cantidad" value="#{sdVentaDetalleController.selected.cantidad}" title="#{bundle.CreateSdVentaDetalleTitle_cantidad}" />
-                        <p:outputLabel value="#{bundle.CreateSdVentaDetalleLabel_monto}" for="monto" />
-                        <p:inputText id="monto" value="#{sdVentaDetalleController.selected.monto}" title="#{bundle.CreateSdVentaDetalleTitle_monto}" />
+                        <p:outputLabel value="#{bundle.CreateSdVentaDetalleLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{sdVentaDetalleController.selected.precio}" title="#{bundle.CreateSdVentaDetalleTitle_precio}" />
+                        <p:outputLabel value="#{bundle.CreateSdVentaDetalleLabel_importe}" for="importe" />
+                        <p:inputText id="importe" value="#{sdVentaDetalleController.selected.importe}" title="#{bundle.CreateSdVentaDetalleTitle_importe}" />
+                        <p:outputLabel value="#{bundle.CreateSdVentaDetalleLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{sdVentaDetalleController.selected.estado}" title="#{bundle.CreateSdVentaDetalleTitle_estado}" />
                         <p:outputLabel value="#{bundle.CreateSdVentaDetalleLabel_idProducto}" for="idProducto" />
                         <p:selectOneMenu id="idProducto" value="#{sdVentaDetalleController.selected.idProducto}" required="true" requiredMessage="#{bundle.EditSdVentaDetalleRequiredMessage_idProducto}">
                             <f:selectItems value="#{sdProductoController.itemsAvailableSelectOne}"

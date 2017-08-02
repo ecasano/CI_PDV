@@ -12,14 +12,12 @@
             <h:form id="SdFormaPagoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdFormaPagoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdFormaPagoLabel_id}"/>
-                        <h:outputText value="#{sdFormaPagoController.selected.id}" title="#{bundle.ViewSdFormaPagoTitle_id}"/>
                         <h:outputText value="#{bundle.ViewSdFormaPagoLabel_nombre}"/>
                         <h:outputText value="#{sdFormaPagoController.selected.nombre}" title="#{bundle.ViewSdFormaPagoTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSdFormaPagoLabel_descripcion}"/>
                         <h:outputText value="#{sdFormaPagoController.selected.descripcion}" title="#{bundle.ViewSdFormaPagoTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewSdFormaPagoLabel_estado}"/>
-                        <h:outputText value="#{sdFormaPagoController.selected.estado}" title="#{bundle.ViewSdFormaPagoTitle_estado}"/>
+                        <h:outputText value="#{sdFormaPagoController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdFormaPagoTitle_estado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdFormaPagoViewDialog.hide()"/>
                 </h:panelGroup>

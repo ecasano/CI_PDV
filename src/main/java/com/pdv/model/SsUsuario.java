@@ -61,6 +61,9 @@ public class SsUsuario implements Serializable {
     private String correo;
     @Column(name = "Estado")
     private Integer estado;
+    @JoinColumn(name = "IdPuntoVenta", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private SdPuntoVenta idPuntoVenta;
     @JoinColumn(name = "IdPerfil", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SsPerfil idPerfil;
@@ -122,6 +125,14 @@ public class SsUsuario implements Serializable {
         this.estado = estado;
     }
 
+    public SdPuntoVenta getIdPuntoVenta() {
+        return idPuntoVenta;
+    }
+
+    public void setIdPuntoVenta(SdPuntoVenta idPuntoVenta) {
+        this.idPuntoVenta = idPuntoVenta;
+    }
+
     public SsPerfil getIdPerfil() {
         return idPerfil;
     }
@@ -161,7 +172,8 @@ public class SsUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SsUsuario[ id=" + id + " ]";
+        //return "com.pdv.model.SsUsuario[ id=" + id + " ]";
+        return this.nombre;
     }
     
 }

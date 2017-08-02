@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SsUbiegoCreateDlg" widgetVar="SsUbiegoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSsUbiegoTitle}">
+            <h:form id="SsUbiegoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ssUbiegoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSsUbiegoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{ssUbiegoController.selected.id}" title="#{bundle.CreateSsUbiegoTitle_id}" required="true" requiredMessage="#{bundle.CreateSsUbiegoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateSsUbiegoLabel_departamento}" for="departamento" />
+                        <p:inputText id="departamento" value="#{ssUbiegoController.selected.departamento}" title="#{bundle.CreateSsUbiegoTitle_departamento}" />
+                        <p:outputLabel value="#{bundle.CreateSsUbiegoLabel_provincia}" for="provincia" />
+                        <p:inputText id="provincia" value="#{ssUbiegoController.selected.provincia}" title="#{bundle.CreateSsUbiegoTitle_provincia}" />
+                        <p:outputLabel value="#{bundle.CreateSsUbiegoLabel_distrito}" for="distrito" />
+                        <p:inputText id="distrito" value="#{ssUbiegoController.selected.distrito}" title="#{bundle.CreateSsUbiegoTitle_distrito}" />
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ssUbiegoController.create}" value="#{bundle.Save}" update="display,:SsUbiegoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SsUbiegoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SsUbiegoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

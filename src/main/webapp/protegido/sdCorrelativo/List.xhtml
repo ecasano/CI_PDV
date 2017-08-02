@@ -27,63 +27,53 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
+                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_idPuntoVenta}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idPuntoVenta}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_idTipoDocumento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTipoDocumento}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_serieInicial}"/>
+                                <h:outputText value="Serie-Número Inicial"/>
                             </f:facet>
                             <h:outputText value="#{item.serieInicial}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_numeroInicial}"/>
-                            </f:facet>
+                            <h:outputText value="-"/>
                             <h:outputText value="#{item.numeroInicial}"/>
                         </p:column>
+                       
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_serieFinal}"/>
+                                <h:outputText value="Serie-Número Final"/>
                             </f:facet>
                             <h:outputText value="#{item.serieFinal}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_numeroFinal}"/>
-                            </f:facet>
+                            <h:outputText value="-"/>
                             <h:outputText value="#{item.numeroFinal}"/>
                         </p:column>
+                      
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdCorrelativoTitle_fecha}"/>
                             </f:facet>
                             <h:outputText value="#{item.fecha}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
-                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_idPuntoVenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPuntoVenta.codigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdCorrelativoTitle_idTipoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoDocumento.descripcion}"/>
+                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdCorrelativoTitle_estado}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estado}"/>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
                         </p:column>
+                        
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdCorrelativoController.prepareCreate}" update=":SdCorrelativoCreateForm" oncomplete="PF('SdCorrelativoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SdCorrelativoViewForm" oncomplete="PF('SdCorrelativoViewDialog').show()" disabled="#{empty sdCorrelativoController.selected}"/>

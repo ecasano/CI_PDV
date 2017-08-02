@@ -12,24 +12,28 @@
             <h:form id="SdPuntoVentaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdPuntoVentaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{sdPuntoVentaController.selected.id}" title="#{bundle.CreateSdPuntoVentaTitle_id}" required="true" requiredMessage="#{bundle.CreateSdPuntoVentaRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_codigo}" for="codigo" />
                         <p:inputText id="codigo" value="#{sdPuntoVentaController.selected.codigo}" title="#{bundle.CreateSdPuntoVentaTitle_codigo}" />
                         <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{sdPuntoVentaController.selected.descripcion}" title="#{bundle.CreateSdPuntoVentaTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_direccion}" for="direccion" />
                         <p:inputText id="direccion" value="#{sdPuntoVentaController.selected.direccion}" title="#{bundle.CreateSdPuntoVentaTitle_direccion}" />
-                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_ubigeo}" for="ubigeo" />
-                        <p:inputText id="ubigeo" value="#{sdPuntoVentaController.selected.ubigeo}" title="#{bundle.CreateSdPuntoVentaTitle_ubigeo}" />
                         <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_idEmpresa}" for="idEmpresa" />
                         <p:inputText id="idEmpresa" value="#{sdPuntoVentaController.selected.idEmpresa}" title="#{bundle.CreateSdPuntoVentaTitle_idEmpresa}" />
-                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_fechaRegistro}" for="fechaRegistro" />
-                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{sdPuntoVentaController.selected.fechaRegistro}" title="#{bundle.EditSdPuntoVentaTitle_fechaRegistro}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_usuarioRegistro}" for="usuarioRegistro" />
-                        <p:inputText id="usuarioRegistro" value="#{sdPuntoVentaController.selected.usuarioRegistro}" title="#{bundle.CreateSdPuntoVentaTitle_usuarioRegistro}" />
-                        <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{sdPuntoVentaController.selected.estado}" title="#{bundle.CreateSdPuntoVentaTitle_estado}" />
+                        
+                        
+                          <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_idUbiego}" for="idUbiego" />
+                        <p:selectOneMenu id="idUbiego" value="#{sdPuntoVentaController.selected.idUbiego}" required="true" requiredMessage="#{bundle.EditSdPuntoVentaRequiredMessage_idUbiego}">
+                            <f:selectItems value="#{ssUbiegoController.itemsAvailableSelectOne}"
+                                           var="idUbiegoItem"
+                                           itemValue="#{idUbiegoItem}"/>
+                        </p:selectOneMenu>
+                          <p:outputLabel value="#{bundle.CreateSdPuntoVentaLabel_estado}" for="estado" />
+                        
+                        <p:selectOneMenu id="estado" value="#{sdPuntoVentaController.selected.estado}" required="true" requiredMessage="#{bundle.CreateSdPuntoVentaTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdPuntoVentaController.create}" value="#{bundle.Save}" update="display,:SdPuntoVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdPuntoVentaCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdPuntoVentaCreateDialog.hide()"/>

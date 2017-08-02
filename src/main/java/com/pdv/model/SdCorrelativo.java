@@ -6,20 +6,26 @@
 package com.pdv.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,16 +37,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "SdCorrelativo.findAll", query = "SELECT s FROM SdCorrelativo s")
     , @NamedQuery(name = "SdCorrelativo.findById", query = "SELECT s FROM SdCorrelativo s WHERE s.id = :id")
-    , @NamedQuery(name = "SdCorrelativo.findByIdPuntoVenta", query = "SELECT s FROM SdCorrelativo s WHERE s.idPuntoVenta = :idPuntoVenta")
-    , @NamedQuery(name = "SdCorrelativo.findByIdTipoDocumento", query = "SELECT s FROM SdCorrelativo s WHERE s.idTipoDocumento = :idTipoDocumento")
     , @NamedQuery(name = "SdCorrelativo.findBySerieInicial", query = "SELECT s FROM SdCorrelativo s WHERE s.serieInicial = :serieInicial")
     , @NamedQuery(name = "SdCorrelativo.findByNumeroInicial", query = "SELECT s FROM SdCorrelativo s WHERE s.numeroInicial = :numeroInicial")
     , @NamedQuery(name = "SdCorrelativo.findBySerieFinal", query = "SELECT s FROM SdCorrelativo s WHERE s.serieFinal = :serieFinal")
     , @NamedQuery(name = "SdCorrelativo.findByNumeroFinal", query = "SELECT s FROM SdCorrelativo s WHERE s.numeroFinal = :numeroFinal")
     , @NamedQuery(name = "SdCorrelativo.findByFecha", query = "SELECT s FROM SdCorrelativo s WHERE s.fecha = :fecha")
+    , @NamedQuery(name = "SdCorrelativo.findByEstado", query = "SELECT s FROM SdCorrelativo s WHERE s.estado = :estado")
     , @NamedQuery(name = "SdCorrelativo.findByFechaRegistro", query = "SELECT s FROM SdCorrelativo s WHERE s.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "SdCorrelativo.findByUsuarioRegistro", query = "SELECT s FROM SdCorrelativo s WHERE s.usuarioRegistro = :usuarioRegistro")
-    , @NamedQuery(name = "SdCorrelativo.findByEstado", query = "SELECT s FROM SdCorrelativo s WHERE s.estado = :estado")})
+    , @NamedQuery(name = "SdCorrelativo.findByFechaActualizacion", query = "SELECT s FROM SdCorrelativo s WHERE s.fechaActualizacion = :fechaActualizacion")
+    , @NamedQuery(name = "SdCorrelativo.findByUsuarioActualizacion", query = "SELECT s FROM SdCorrelativo s WHERE s.usuarioActualizacion = :usuarioActualizacion")})
 public class SdCorrelativo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,10 +55,6 @@ public class SdCorrelativo implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
-    @Column(name = "IdPuntoVenta")
-    private Integer idPuntoVenta;
-    @Column(name = "IdTipoDocumento")
-    private Integer idTipoDocumento;
     @Size(max = 45)
     @Column(name = "SerieInicial")
     private String serieInicial;
@@ -67,15 +69,29 @@ public class SdCorrelativo implements Serializable {
     private String numeroFinal;
     @Column(name = "Fecha")
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private Date fecha = new Date();
+    @Column(name = "Estado")
+    private Integer estado;
     @Column(name = "FechaRegistro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
     @Size(max = 45)
     @Column(name = "UsuarioRegistro")
     private String usuarioRegistro;
-    @Column(name = "Estado")
-    private Integer estado;
+    @Column(name = "FechaActualizacion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaActualizacion;
+    @Size(max = 45)
+    @Column(name = "UsuarioActualizacion")
+    private String usuarioActualizacion;
+    @JoinColumn(name = "IdPuntoVenta", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private SdPuntoVenta idPuntoVenta;
+    @JoinColumn(name = "IdTipoDocumento", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private SdTipoDocumento idTipoDocumento;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCorrelativo")
+    private Collection<SdVenta> sdVentaCollection;
 
     public SdCorrelativo() {
     }
@@ -90,22 +106,6 @@ public class SdCorrelativo implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getIdPuntoVenta() {
-        return idPuntoVenta;
-    }
-
-    public void setIdPuntoVenta(Integer idPuntoVenta) {
-        this.idPuntoVenta = idPuntoVenta;
-    }
-
-    public Integer getIdTipoDocumento() {
-        return idTipoDocumento;
-    }
-
-    public void setIdTipoDocumento(Integer idTipoDocumento) {
-        this.idTipoDocumento = idTipoDocumento;
     }
 
     public String getSerieInicial() {
@@ -148,6 +148,14 @@ public class SdCorrelativo implements Serializable {
         this.fecha = fecha;
     }
 
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
+    }
+
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
@@ -164,12 +172,45 @@ public class SdCorrelativo implements Serializable {
         this.usuarioRegistro = usuarioRegistro;
     }
 
-    public Integer getEstado() {
-        return estado;
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
     }
 
-    public void setEstado(Integer estado) {
-        this.estado = estado;
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    public String getUsuarioActualizacion() {
+        return usuarioActualizacion;
+    }
+
+    public void setUsuarioActualizacion(String usuarioActualizacion) {
+        this.usuarioActualizacion = usuarioActualizacion;
+    }
+
+    public SdPuntoVenta getIdPuntoVenta() {
+        return idPuntoVenta;
+    }
+
+    public void setIdPuntoVenta(SdPuntoVenta idPuntoVenta) {
+        this.idPuntoVenta = idPuntoVenta;
+    }
+
+    public SdTipoDocumento getIdTipoDocumento() {
+        return idTipoDocumento;
+    }
+
+    public void setIdTipoDocumento(SdTipoDocumento idTipoDocumento) {
+        this.idTipoDocumento = idTipoDocumento;
+    }
+
+    @XmlTransient
+    public Collection<SdVenta> getSdVentaCollection() {
+        return sdVentaCollection;
+    }
+
+    public void setSdVentaCollection(Collection<SdVenta> sdVentaCollection) {
+        this.sdVentaCollection = sdVentaCollection;
     }
 
     @Override

@@ -42,23 +42,17 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "SdVenta.findByNumeroDocumento", query = "SELECT s FROM SdVenta s WHERE s.numeroDocumento = :numeroDocumento")
     , @NamedQuery(name = "SdVenta.findByFechaDocumento", query = "SELECT s FROM SdVenta s WHERE s.fechaDocumento = :fechaDocumento")
     , @NamedQuery(name = "SdVenta.findByFechaVencimientoDocumento", query = "SELECT s FROM SdVenta s WHERE s.fechaVencimientoDocumento = :fechaVencimientoDocumento")
-    , @NamedQuery(name = "SdVenta.findByTipoDocumentoCliente", query = "SELECT s FROM SdVenta s WHERE s.tipoDocumentoCliente = :tipoDocumentoCliente")
-    , @NamedQuery(name = "SdVenta.findByNroDocumentoCliente", query = "SELECT s FROM SdVenta s WHERE s.nroDocumentoCliente = :nroDocumentoCliente")
-    , @NamedQuery(name = "SdVenta.findByNombreCliente", query = "SELECT s FROM SdVenta s WHERE s.nombreCliente = :nombreCliente")
-    , @NamedQuery(name = "SdVenta.findByDireccionCliente", query = "SELECT s FROM SdVenta s WHERE s.direccionCliente = :direccionCliente")
-    , @NamedQuery(name = "SdVenta.findByEstado", query = "SELECT s FROM SdVenta s WHERE s.estado = :estado")
+    , @NamedQuery(name = "SdVenta.findByTipoCambio", query = "SELECT s FROM SdVenta s WHERE s.tipoCambio = :tipoCambio")
     , @NamedQuery(name = "SdVenta.findBySubtotal", query = "SELECT s FROM SdVenta s WHERE s.subtotal = :subtotal")
     , @NamedQuery(name = "SdVenta.findByIgv", query = "SELECT s FROM SdVenta s WHERE s.igv = :igv")
     , @NamedQuery(name = "SdVenta.findByTotal", query = "SELECT s FROM SdVenta s WHERE s.total = :total")
-    , @NamedQuery(name = "SdVenta.findByFechaAnulacion", query = "SELECT s FROM SdVenta s WHERE s.fechaAnulacion = :fechaAnulacion")
-    , @NamedQuery(name = "SdVenta.findByUsuarioAnulacion", query = "SELECT s FROM SdVenta s WHERE s.usuarioAnulacion = :usuarioAnulacion")
+    , @NamedQuery(name = "SdVenta.findByEstado", query = "SELECT s FROM SdVenta s WHERE s.estado = :estado")
     , @NamedQuery(name = "SdVenta.findByFechaRegistro", query = "SELECT s FROM SdVenta s WHERE s.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "SdVenta.findByUsuarioRegistro", query = "SELECT s FROM SdVenta s WHERE s.usuarioRegistro = :usuarioRegistro")
-    , @NamedQuery(name = "SdVenta.findByTipoTarjeta", query = "SELECT s FROM SdVenta s WHERE s.tipoTarjeta = :tipoTarjeta")
-    , @NamedQuery(name = "SdVenta.findByNroTarjeta", query = "SELECT s FROM SdVenta s WHERE s.nroTarjeta = :nroTarjeta")
-    , @NamedQuery(name = "SdVenta.findByFechaVencimientoTarjeta", query = "SELECT s FROM SdVenta s WHERE s.fechaVencimientoTarjeta = :fechaVencimientoTarjeta")
-    , @NamedQuery(name = "SdVenta.findByTitularTarjeta", query = "SELECT s FROM SdVenta s WHERE s.titularTarjeta = :titularTarjeta")
-    , @NamedQuery(name = "SdVenta.findByTipoCambio", query = "SELECT s FROM SdVenta s WHERE s.tipoCambio = :tipoCambio")})
+    , @NamedQuery(name = "SdVenta.findByFechaActualizacion", query = "SELECT s FROM SdVenta s WHERE s.fechaActualizacion = :fechaActualizacion")
+    , @NamedQuery(name = "SdVenta.findByUsuarioActualizacion", query = "SELECT s FROM SdVenta s WHERE s.usuarioActualizacion = :usuarioActualizacion")
+    , @NamedQuery(name = "SdVenta.findByFechaAnulacion", query = "SELECT s FROM SdVenta s WHERE s.fechaAnulacion = :fechaAnulacion")
+    , @NamedQuery(name = "SdVenta.findByUsuarioAnulacion", query = "SELECT s FROM SdVenta s WHERE s.usuarioAnulacion = :usuarioAnulacion")})
 public class SdVenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -75,59 +69,47 @@ public class SdVenta implements Serializable {
     private String numeroDocumento;
     @Column(name = "FechaDocumento")
     @Temporal(TemporalType.DATE)
-    private Date fechaDocumento;
+    private Date fechaDocumento = new Date();
     @Column(name = "FechaVencimientoDocumento")
     @Temporal(TemporalType.DATE)
     private Date fechaVencimientoDocumento;
-    @Size(max = 45)
-    @Column(name = "TipoDocumentoCliente")
-    private String tipoDocumentoCliente;
-    @Size(max = 45)
-    @Column(name = "NroDocumentoCliente")
-    private String nroDocumentoCliente;
-    @Size(max = 255)
-    @Column(name = "NombreCliente")
-    private String nombreCliente;
-    @Size(max = 255)
-    @Column(name = "DireccionCliente")
-    private String direccionCliente;
-    @Column(name = "Estado")
-    private Integer estado;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "TipoCambio")
+    private BigDecimal tipoCambio;
     @Column(name = "Subtotal")
     private BigDecimal subtotal;
     @Column(name = "IGV")
     private BigDecimal igv;
     @Column(name = "Total")
     private BigDecimal total;
-    @Column(name = "FechaAnulacion")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaAnulacion;
-    @Size(max = 45)
-    @Column(name = "UsuarioAnulacion")
-    private String usuarioAnulacion;
+    @Column(name = "Estado")
+    private Integer estado;
     @Column(name = "FechaRegistro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
     @Size(max = 45)
     @Column(name = "UsuarioRegistro")
     private String usuarioRegistro;
+    @Column(name = "FechaActualizacion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaActualizacion;
     @Size(max = 45)
-    @Column(name = "TipoTarjeta")
-    private String tipoTarjeta;
+    @Column(name = "UsuarioActualizacion")
+    private String usuarioActualizacion;
+    @Column(name = "FechaAnulacion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaAnulacion;
     @Size(max = 45)
-    @Column(name = "NroTarjeta")
-    private String nroTarjeta;
-    @Size(max = 6)
-    @Column(name = "FechaVencimientoTarjeta")
-    private String fechaVencimientoTarjeta;
-    @Size(max = 255)
-    @Column(name = "TitularTarjeta")
-    private String titularTarjeta;
-    @Column(name = "TipoCambio")
-    private BigDecimal tipoCambio;
+    @Column(name = "UsuarioAnulacion")
+    private String usuarioAnulacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sdVenta")
     private Collection<SdVentaDetalle> sdVentaDetalleCollection;
+    @JoinColumn(name = "IdCliente", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private SdCliente idCliente;
+    @JoinColumn(name = "IdCorrelativo", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private SdCorrelativo idCorrelativo;
     @JoinColumn(name = "IdFormaPago", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdFormaPago idFormaPago;
@@ -191,44 +173,12 @@ public class SdVenta implements Serializable {
         this.fechaVencimientoDocumento = fechaVencimientoDocumento;
     }
 
-    public String getTipoDocumentoCliente() {
-        return tipoDocumentoCliente;
+    public BigDecimal getTipoCambio() {
+        return tipoCambio;
     }
 
-    public void setTipoDocumentoCliente(String tipoDocumentoCliente) {
-        this.tipoDocumentoCliente = tipoDocumentoCliente;
-    }
-
-    public String getNroDocumentoCliente() {
-        return nroDocumentoCliente;
-    }
-
-    public void setNroDocumentoCliente(String nroDocumentoCliente) {
-        this.nroDocumentoCliente = nroDocumentoCliente;
-    }
-
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public String getDireccionCliente() {
-        return direccionCliente;
-    }
-
-    public void setDireccionCliente(String direccionCliente) {
-        this.direccionCliente = direccionCliente;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
+    public void setTipoCambio(BigDecimal tipoCambio) {
+        this.tipoCambio = tipoCambio;
     }
 
     public BigDecimal getSubtotal() {
@@ -255,20 +205,12 @@ public class SdVenta implements Serializable {
         this.total = total;
     }
 
-    public Date getFechaAnulacion() {
-        return fechaAnulacion;
+    public Integer getEstado() {
+        return estado;
     }
 
-    public void setFechaAnulacion(Date fechaAnulacion) {
-        this.fechaAnulacion = fechaAnulacion;
-    }
-
-    public String getUsuarioAnulacion() {
-        return usuarioAnulacion;
-    }
-
-    public void setUsuarioAnulacion(String usuarioAnulacion) {
-        this.usuarioAnulacion = usuarioAnulacion;
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 
     public Date getFechaRegistro() {
@@ -287,44 +229,36 @@ public class SdVenta implements Serializable {
         this.usuarioRegistro = usuarioRegistro;
     }
 
-    public String getTipoTarjeta() {
-        return tipoTarjeta;
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
     }
 
-    public void setTipoTarjeta(String tipoTarjeta) {
-        this.tipoTarjeta = tipoTarjeta;
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
     }
 
-    public String getNroTarjeta() {
-        return nroTarjeta;
+    public String getUsuarioActualizacion() {
+        return usuarioActualizacion;
     }
 
-    public void setNroTarjeta(String nroTarjeta) {
-        this.nroTarjeta = nroTarjeta;
+    public void setUsuarioActualizacion(String usuarioActualizacion) {
+        this.usuarioActualizacion = usuarioActualizacion;
     }
 
-    public String getFechaVencimientoTarjeta() {
-        return fechaVencimientoTarjeta;
+    public Date getFechaAnulacion() {
+        return fechaAnulacion;
     }
 
-    public void setFechaVencimientoTarjeta(String fechaVencimientoTarjeta) {
-        this.fechaVencimientoTarjeta = fechaVencimientoTarjeta;
+    public void setFechaAnulacion(Date fechaAnulacion) {
+        this.fechaAnulacion = fechaAnulacion;
     }
 
-    public String getTitularTarjeta() {
-        return titularTarjeta;
+    public String getUsuarioAnulacion() {
+        return usuarioAnulacion;
     }
 
-    public void setTitularTarjeta(String titularTarjeta) {
-        this.titularTarjeta = titularTarjeta;
-    }
-
-    public BigDecimal getTipoCambio() {
-        return tipoCambio;
-    }
-
-    public void setTipoCambio(BigDecimal tipoCambio) {
-        this.tipoCambio = tipoCambio;
+    public void setUsuarioAnulacion(String usuarioAnulacion) {
+        this.usuarioAnulacion = usuarioAnulacion;
     }
 
     @XmlTransient
@@ -334,6 +268,22 @@ public class SdVenta implements Serializable {
 
     public void setSdVentaDetalleCollection(Collection<SdVentaDetalle> sdVentaDetalleCollection) {
         this.sdVentaDetalleCollection = sdVentaDetalleCollection;
+    }
+
+    public SdCliente getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(SdCliente idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public SdCorrelativo getIdCorrelativo() {
+        return idCorrelativo;
+    }
+
+    public void setIdCorrelativo(SdCorrelativo idCorrelativo) {
+        this.idCorrelativo = idCorrelativo;
     }
 
     public SdFormaPago getIdFormaPago() {

@@ -124,7 +124,8 @@ public class SdUnidad implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SdUnidad[ id=" + id + " ]";
+        //return "com.pdv.model.SdUnidad[ id=" + id + " ]";
+        return this.descripcion;
     }
     
 }

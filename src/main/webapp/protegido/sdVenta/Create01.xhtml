@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SdVentaCreateDlg" widgetVar="SdVentaCreateDialog" modal="true" resizable="true" appendTo="@(body)" header="#{bundle.CreateSdVentaTitle}">
+            <h:form id="SdVentaCreateForm">
+                <h:panelGroup id="display">
+                    
+                    <p:panelGrid rendered="#{sdVentaController.selected != null}">
+                        
+                        <f:facet name="header">
+                            <p:row>
+                                
+                                <p:column>
+                                    <p:selectOneMenu id="idTipoDocumento" value="#{sdVentaController.selected.idTipoDocumento}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idTipoDocumento}">
+                                        <f:selectItems value="#{sdTipoDocumentoController.itemsAvailableSelectOne}"
+                                                   var="idTipoDocumentoItem"
+                                                   itemValue="#{idTipoDocumentoItem}"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                                <p:column>Fec. Emisión</p:column>
+                                
+                                <p:column>
+                                    <p:selectOneMenu id="tipoDocumentoCliente" value="#{sdVentaController.selected.tipoDocumentoCliente}" required="true" requiredMessage="Seleccione Dni o Ruc">
+                                        <f:selectItem itemLabel="DNI" itemValue="DNI" />
+                                        <f:selectItem itemLabel="RUC" itemValue="RUC" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                                
+                                <p:column>Cliente</p:column>
+                                <p:column>Dirección</p:column>
+                                
+                            </p:row>
+
+                        </f:facet>
+                            
+                        <p:row>
+                           
+                            <p:column>
+                                <p:inputText id="serieDocumento" value="#{sdVentaController.selected.serieDocumento}" title="Serie" maxlength="4" size="4" />
+                                <p:inputText id="numeroDocumento" value="#{sdVentaController.selected.numeroDocumento}" title="Número" maxlength="8" size="8"  />
+                            </p:column>
+                            
+                            <p:column>                            
+                                <p:calendar id="fechaDocumento" pattern="MM/dd/yyyy" value="#{sdVentaController.selected.fechaDocumento}" title="#{bundle.EditSdVentaTitle_fechaDocumento}"  showOn="button" maxlength="10" size="10"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <p:inputText id="nroDocumentoCliente" value="#{sdVentaController.selected.nroDocumentoCliente}" title="#{bundle.CreateSdVentaTitle_nroDocumentoCliente}" maxlength="11" size="11"/>
+                            </p:column>
+                            
+                             <p:column>
+                                <p:inputText id="nombreCliente" value="#{sdVentaController.selected.nombreCliente}" title="#{bundle.CreateSdVentaTitle_nombreCliente}" maxlength="25" size="25" />
+                            </p:column>
+                            
+                            <p:column>
+                                <p:inputText id="direccionCliente" value="#{sdVentaController.selected.direccionCliente}" title="#{bundle.CreateSdVentaTitle_direccionCliente}" maxlength="50" size="50" />
+                            </p:column>
+                        
+                        </p:row>
+                        
+                        <p:row>
+                                <p:column styleClass="ui-widget-header">Moneda</p:column>
+                                <p:column styleClass="ui-widget-header">Tipo Cambio</p:column>
+                                <p:column styleClass="ui-widget-header" colspan="3"></p:column>
+                        </p:row>
+                                
+                        <p:row>
+                            
+                            <p:column style="text-align: center">
+                                <p:selectOneMenu id="idMoneda" value="#{sdVentaController.selected.idMoneda}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idMoneda}">
+                                    <f:selectItems value="#{sdMonedaController.itemsAvailableSelectOne}"
+                                                   var="idMonedaItem"
+                                                   itemValue="#{idMonedaItem}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            
+                            <p:column style="text-align: center">
+                                <p:inputText id="tipoCambio" value="#{sdVentaController.selected.tipoCambio}" title="#{bundle.CreateSdVentaTitle_tipoCambio}"  maxlength="4" size="4" />
+                            </p:column>
+                            
+                            <p:column colspan="3"></p:column>
+                            
+                        </p:row>
+                        
+                         
+                        
+                        
+                        <f:facet name="footer">
+                            <p:row>
+                                <p:column colspan="4"  style="text-align: right">
+                                    <p:outputLabel value="#{bundle.CreateSdVentaLabel_subtotal}" for="subtotal" />
+                                </p:column>
+                                <p:column  >
+                                   <p:inputText id="subtotal" disabled="true" value="#{sdVentaController.selected.subtotal}" title="#{bundle.CreateSdVentaTitle_subtotal}" />
+                                </p:column>
+                            </p:row>
+                            
+                            <p:row>
+                                <p:column colspan="4" style="text-align: right">
+                                    <p:outputLabel value="#{bundle.CreateSdVentaLabel_igv}" for="igv" />
+                                </p:column>
+                                <p:column  >
+                                    <p:inputText id="igv" disabled="true" value="#{sdVentaController.selected.igv}" title="#{bundle.CreateSdVentaTitle_igv}" />
+                                </p:column>
+                            </p:row>
+                            
+                            <p:row>
+                                <p:column colspan="4" style="text-align: right">
+                                    <p:outputLabel value="#{bundle.CreateSdVentaLabel_total}" for="total" />
+                                </p:column>
+                                <p:column  >
+                                    <p:inputText id="total" disabled="true" value="#{sdVentaController.selected.total}" title="#{bundle.CreateSdVentaTitle_total}" />
+                                </p:column>
+                            </p:row>
+                            
+                           
+                        </f:facet>
+                    </p:panelGrid>
+                    
+                    <p:commandButton actionListener="#{sdVentaController.create}" value="#{bundle.Save}" update="display,:SdVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdVentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SdVentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+            
+            
+            
+        </p:dialog>
+
+    </ui:composition>
+</html>

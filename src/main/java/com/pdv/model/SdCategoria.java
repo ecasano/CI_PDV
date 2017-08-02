@@ -124,7 +124,8 @@ public class SdCategoria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SdCategoria[ id=" + id + " ]";
+        //return "com.pdv.model.SdCategoria[ id=" + id + " ]";
+        return this.descripcion;
     }
     
 }

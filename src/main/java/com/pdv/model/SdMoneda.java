@@ -148,7 +148,7 @@ public class SdMoneda implements Serializable {
     @Override
     public String toString() {
         //return "com.pdv.model.SdMoneda[ id=" + id + " ]";
-        return this.getNombre();
+        return this.nombre;
     }
     
 }

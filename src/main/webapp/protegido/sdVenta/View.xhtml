@@ -26,44 +26,27 @@
                         <h:outputText value="#{sdVentaController.selected.fechaVencimientoDocumento}" title="#{bundle.ViewSdVentaTitle_fechaVencimientoDocumento}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_tipoDocumentoCliente}"/>
-                        <h:outputText value="#{sdVentaController.selected.tipoDocumentoCliente}" title="#{bundle.ViewSdVentaTitle_tipoDocumentoCliente}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_nroDocumentoCliente}"/>
-                        <h:outputText value="#{sdVentaController.selected.nroDocumentoCliente}" title="#{bundle.ViewSdVentaTitle_nroDocumentoCliente}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_nombreCliente}"/>
-                        <h:outputText value="#{sdVentaController.selected.nombreCliente}" title="#{bundle.ViewSdVentaTitle_nombreCliente}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_direccionCliente}"/>
-                        <h:outputText value="#{sdVentaController.selected.direccionCliente}" title="#{bundle.ViewSdVentaTitle_direccionCliente}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_estado}"/>
-                        <h:outputText value="#{sdVentaController.selected.estado}" title="#{bundle.ViewSdVentaTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewSdVentaLabel_tipoCambio}"/>
+                        <h:outputText value="#{sdVentaController.selected.tipoCambio}" title="#{bundle.ViewSdVentaTitle_tipoCambio}"/>
                         <h:outputText value="#{bundle.ViewSdVentaLabel_subtotal}"/>
                         <h:outputText value="#{sdVentaController.selected.subtotal}" title="#{bundle.ViewSdVentaTitle_subtotal}"/>
                         <h:outputText value="#{bundle.ViewSdVentaLabel_igv}"/>
                         <h:outputText value="#{sdVentaController.selected.igv}" title="#{bundle.ViewSdVentaTitle_igv}"/>
                         <h:outputText value="#{bundle.ViewSdVentaLabel_total}"/>
                         <h:outputText value="#{sdVentaController.selected.total}" title="#{bundle.ViewSdVentaTitle_total}"/>
+                        <h:outputText value="#{bundle.ViewSdVentaLabel_estado}"/>
+                        <h:outputText value="#{sdVentaController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdVentaTitle_estado}"/>
+                        
                         <h:outputText value="#{bundle.ViewSdVentaLabel_fechaAnulacion}"/>
                         <h:outputText value="#{sdVentaController.selected.fechaAnulacion}" title="#{bundle.ViewSdVentaTitle_fechaAnulacion}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewSdVentaLabel_usuarioAnulacion}"/>
                         <h:outputText value="#{sdVentaController.selected.usuarioAnulacion}" title="#{bundle.ViewSdVentaTitle_usuarioAnulacion}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_fechaRegistro}"/>
-                        <h:outputText value="#{sdVentaController.selected.fechaRegistro}" title="#{bundle.ViewSdVentaTitle_fechaRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_usuarioRegistro}"/>
-                        <h:outputText value="#{sdVentaController.selected.usuarioRegistro}" title="#{bundle.ViewSdVentaTitle_usuarioRegistro}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_tipoTarjeta}"/>
-                        <h:outputText value="#{sdVentaController.selected.tipoTarjeta}" title="#{bundle.ViewSdVentaTitle_tipoTarjeta}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_nroTarjeta}"/>
-                        <h:outputText value="#{sdVentaController.selected.nroTarjeta}" title="#{bundle.ViewSdVentaTitle_nroTarjeta}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_fechaVencimientoTarjeta}"/>
-                        <h:outputText value="#{sdVentaController.selected.fechaVencimientoTarjeta}" title="#{bundle.ViewSdVentaTitle_fechaVencimientoTarjeta}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_titularTarjeta}"/>
-                        <h:outputText value="#{sdVentaController.selected.titularTarjeta}" title="#{bundle.ViewSdVentaTitle_titularTarjeta}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaLabel_tipoCambio}"/>
-                        <h:outputText value="#{sdVentaController.selected.tipoCambio}" title="#{bundle.ViewSdVentaTitle_tipoCambio}"/>
+                        <h:outputText value="#{bundle.ViewSdVentaLabel_idCliente}"/>
+                        <h:outputText value="#{sdVentaController.selected.idCliente}" title="#{bundle.ViewSdVentaTitle_idCliente}"/>
+                        <h:outputText value="#{bundle.ViewSdVentaLabel_idCorrelativo}"/>
+                        <h:outputText value="#{sdVentaController.selected.idCorrelativo}" title="#{bundle.ViewSdVentaTitle_idCorrelativo}"/>
                         <h:outputText value="#{bundle.ViewSdVentaLabel_idFormaPago}"/>
                         <h:outputText value="#{sdVentaController.selected.idFormaPago}" title="#{bundle.ViewSdVentaTitle_idFormaPago}"/>
                         <h:outputText value="#{bundle.ViewSdVentaLabel_idMoneda}"/>

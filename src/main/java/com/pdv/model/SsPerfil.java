@@ -112,7 +112,8 @@ public class SsPerfil implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SsPerfil[ id=" + id + " ]";
+        //return "com.pdv.model.SsPerfil[ id=" + id + " ]";
+        return this.nombre;
     }
     
 }

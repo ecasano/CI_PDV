@@ -12,7 +12,6 @@
             <h:form id="SdTipoDocumentoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdTipoDocumentoController.selected != null}">
-                       
                         <h:outputText value="#{bundle.ViewSdTipoDocumentoLabel_codigoSUNAT}"/>
                         <h:outputText value="#{sdTipoDocumentoController.selected.codigoSUNAT}" title="#{bundle.ViewSdTipoDocumentoTitle_codigoSUNAT}"/>
                         <h:outputText value="#{bundle.ViewSdTipoDocumentoLabel_descripcion}"/>

@@ -84,6 +84,25 @@ public class IndexController implements Serializable {
        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     
     }
+     
+    public String mostrarUsuarioLogeado(){
+       
+       FacesContext context = FacesContext.getCurrentInstance();
+       SsUsuario user = (SsUsuario)context.getExternalContext().getSessionMap().get("usuario");
+       String   datos = "Usuario " + (user.getIdPerfil() == null?"":"("+user.getIdPerfil().getNombre()+")")+": "+user.getNombre();
+                
+       
+       return datos;
+    }
+    
+    public String mostrarPuntoDeVenta(){
+       
+       FacesContext context = FacesContext.getCurrentInstance();
+       SsUsuario user = (SsUsuario)context.getExternalContext().getSessionMap().get("usuario");
+       String  datos = "PDV: " + (user.getIdPuntoVenta() == null?"":user.getIdPuntoVenta().getCodigo());
+       
+       return datos;
+    }
     
 }
 

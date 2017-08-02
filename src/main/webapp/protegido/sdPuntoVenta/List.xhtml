@@ -29,12 +29,6 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdPuntoVentaTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdPuntoVentaTitle_codigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
@@ -53,35 +47,23 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdPuntoVentaTitle_ubigeo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ubigeo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdPuntoVentaTitle_idEmpresa}"/>
                             </f:facet>
                             <h:outputText value="#{item.idEmpresa}"/>
                         </p:column>
+                        
+                       
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdPuntoVentaTitle_fechaRegistro}"/>
+                                <h:outputText value="#{bundle.ListSdPuntoVentaTitle_idUbiego}"/>
                             </f:facet>
-                            <h:outputText value="#{item.fechaRegistro}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdPuntoVentaTitle_usuarioRegistro}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.usuarioRegistro}"/>
+                            <h:outputText value="#{item.idUbiego}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSdPuntoVentaTitle_estado}"/>
                             </f:facet>
-                            <h:outputText value="#{item.estado}"/>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdPuntoVentaController.prepareCreate}" update=":SdPuntoVentaCreateForm" oncomplete="PF('SdPuntoVentaCreateDialog').show()"/>

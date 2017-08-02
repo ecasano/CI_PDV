@@ -52,6 +52,8 @@ public class SdTipoDocumento implements Serializable {
     @Column(name = "Estado")
     private Integer estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoDocumento")
+    private Collection<SdCorrelativo> sdCorrelativoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoDocumento")
     private Collection<SdVenta> sdVentaCollection;
 
     public SdTipoDocumento() {
@@ -94,6 +96,15 @@ public class SdTipoDocumento implements Serializable {
     }
 
     @XmlTransient
+    public Collection<SdCorrelativo> getSdCorrelativoCollection() {
+        return sdCorrelativoCollection;
+    }
+
+    public void setSdCorrelativoCollection(Collection<SdCorrelativo> sdCorrelativoCollection) {
+        this.sdCorrelativoCollection = sdCorrelativoCollection;
+    }
+
+    @XmlTransient
     public Collection<SdVenta> getSdVentaCollection() {
         return sdVentaCollection;
     }
@@ -124,7 +135,8 @@ public class SdTipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SdTipoDocumento[ id=" + id + " ]";
+        //return "com.pdv.model.SdTipoDocumento[ id=" + id + " ]";
+        return this.descripcion;
     }
     
 }

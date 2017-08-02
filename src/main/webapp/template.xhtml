@@ -23,15 +23,17 @@
             <p:layoutUnit position="north" style="border:0"> <!--- header="bundle.AppName"-->
                 
                 <h:form id="menuForm">
-                    <h:panelGrid columns="2" cellpadding="10">
-                        <p:graphicImage library="image" name="logo.png"/> 
+                    <h:panelGrid columns="6" cellpadding="10">
+                        <p:graphicImage library="image" name="logo.png"/>
+                        <p:spacer width="10" height="10" />
+                        
+                        
                         <p:menubar>
                             <p:menuitem value="#{bundle.Home}" outcome="/protegido/principal" icon="ui-icon-home"/>
                             <p:submenu label="#{bundle.Maintenance}">
                                 <p:menuitem value="Categoria"  outcome="/protegido/sdCategoria/List" />      
                                 <p:menuitem value="Cliente"  outcome="/protegido/sdCliente/List" />
                                 <p:menuitem value="Correlativo"  outcome="/protegido/sdCorrelativo/List" />
-                                <p:menuitem value="Empresa"  outcome="/protegido/sdEmpresa/List" />
                                 <p:menuitem value="Formas de Pago"  outcome="/protegido/sdFormaPago/List" />
                                 <p:menuitem value="Moneda"  outcome="/protegido/sdMoneda/List" />
                                 <p:menuitem value="Producto"  outcome="/protegido/sdProducto/List" />
@@ -40,19 +42,28 @@
                                 <p:menuitem value="Tipos de Documento"  outcome="/protegido/sdTipoDocumento/List" />
                                 <p:menuitem value="Unidad"  outcome="/protegido/sdUnidad/List" />
                                 <p:menuitem value="Perfil"  outcome="/protegido/ssPerfil/List" />
+                                <p:menuitem value="Ubicación Geográfica"  outcome="/protegido/ssUbiego/List" />
                                 <p:menuitem value="Usuario"  outcome="/protegido/ssUsuario/List" />
                             </p:submenu>
                             <p:submenu label="Registro de Venta">
                                 <p:menuitem value="Venta"  outcome="/protegido/sdVenta/List" />
                                 <p:menuitem value="Detalle de Venta"  outcome="/protegido/sdVentaDetalle/List" />
                             </p:submenu>
-                            <f:facet name="options">
-                                <p:commandButton actionListener="#{indexController.cerrarSesion()}"  title="Cerrar Sessión" icon="ui-icon-power" action="/index"/>
-                            </f:facet>
+                            <p:menuitem value="Contacto" outcome="/protegido/contacto"/>
+                            
+                            
                             
                         </p:menubar>
+                        <p:spacer width="10" height="10" />
+                        <h:panelGrid columns="1" cellpadding="1">
+                            <p:outputLabel style="color: whitesmoke">#{indexController.mostrarUsuarioLogeado()}</p:outputLabel>
+                            <p:outputLabel style="color: whitesmoke">#{indexController.mostrarPuntoDeVenta()}</p:outputLabel>
+                        </h:panelGrid>
+                        
+                        <p:commandButton actionListener="#{indexController.cerrarSesion()}"  title="Cerrar Sessión" icon="ui-icon-power" action="/index"/>
                         
                     </h:panelGrid>
+                    
                 </h:form>
           
             </p:layoutUnit>
@@ -62,13 +73,23 @@
                 
             </p:layoutUnit-->
 
-            <p:layoutUnit position="center" style="border:0;" >
+            <p:layoutUnit position="center" style="border:0;">
                 <ui:insert name="body"/>
                 <!-- p:separator/ -->
                 <!-- p:outputLabel style="color: lightslategray; text-align: center;"> Copyright © 2017</p:outputLabel-->
             </p:layoutUnit>
 
         </p:layout>
+        
+        <p:dialog id="dlgEdit" widgetVar="_dlgEdit" modal="true" closable="true" header="Accounts">  
+            <h:form id="frmEdit" >
+                <p:panelGrid id="pnlEdit" columns="2">
+                    <p:outputLabel id="lblName" for="eName" value="Name"/>
+                    <p:inputText id="eName" value="abc"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog> 
+                     
 
     </h:body>
 

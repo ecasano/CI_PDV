@@ -22,14 +22,27 @@
                         <p:inputText id="nombre" value="#{ssUsuarioController.selected.nombre}" title="#{bundle.EditSsUsuarioTitle_nombre}" />
                         <p:outputLabel value="#{bundle.EditSsUsuarioLabel_correo}" for="correo" />
                         <p:inputText id="correo" value="#{ssUsuarioController.selected.correo}" title="#{bundle.EditSsUsuarioTitle_correo}" />
-                        <p:outputLabel value="#{bundle.EditSsUsuarioLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{ssUsuarioController.selected.estado}" title="#{bundle.EditSsUsuarioTitle_estado}" />
+                        
+                        <p:outputLabel value="#{bundle.EditSsUsuarioLabel_idPuntoVenta}" for="idPuntoVenta" />
+                        <p:selectOneMenu id="idPuntoVenta" value="#{ssUsuarioController.selected.idPuntoVenta}" required="true" requiredMessage="#{bundle.EditSsUsuarioRequiredMessage_idPuntoVenta}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sdPuntoVentaController.itemsAvailableSelectOne}"
+                                           var="idPuntoVentaItem"
+                                           itemValue="#{idPuntoVentaItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditSsUsuarioLabel_idPerfil}" for="idPerfil" />
                         <p:selectOneMenu id="idPerfil" value="#{ssUsuarioController.selected.idPerfil}" required="true" requiredMessage="#{bundle.EditSsUsuarioRequiredMessage_idPerfil}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{ssPerfilController.itemsAvailableSelectOne}"
                                            var="idPerfilItem"
                                            itemValue="#{idPerfilItem}"/>
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.EditSsUsuarioLabel_estado}" for="estado" />
+                        
+                        <p:selectOneMenu id="estado" value="#{ssUsuarioController.selected.estado}" required="true" requiredMessage="#{bundle.EditSsUsuarioTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{ssUsuarioController.update}" value="#{bundle.Save}" update="display,:SsUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SsUsuarioEditDialog');"/>

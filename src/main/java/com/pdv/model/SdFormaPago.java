@@ -124,7 +124,8 @@ public class SdFormaPago implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SdFormaPago[ id=" + id + " ]";
+        //return "com.pdv.model.SdFormaPago[ id=" + id + " ]";
+        return this.descripcion;
     }
     
 }

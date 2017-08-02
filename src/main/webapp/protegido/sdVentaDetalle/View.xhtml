@@ -16,12 +16,17 @@
                         <h:outputText value="#{sdVentaDetalleController.selected.sdVentaDetallePK.idItem}" title="#{bundle.ViewSdVentaDetalleTitle_sdVentaDetallePK_idItem}"/>
                         <h:outputText value="#{bundle.ViewSdVentaDetalleLabel_cantidad}"/>
                         <h:outputText value="#{sdVentaDetalleController.selected.cantidad}" title="#{bundle.ViewSdVentaDetalleTitle_cantidad}"/>
-                        <h:outputText value="#{bundle.ViewSdVentaDetalleLabel_monto}"/>
-                        <h:outputText value="#{sdVentaDetalleController.selected.monto}" title="#{bundle.ViewSdVentaDetalleTitle_monto}"/>
+                        <h:outputText value="#{bundle.ViewSdVentaDetalleLabel_precio}"/>
+                        <h:outputText value="#{sdVentaDetalleController.selected.precio}" title="#{bundle.ViewSdVentaDetalleTitle_precio}"/>
+                        <h:outputText value="#{bundle.ViewSdVentaDetalleLabel_importe}"/>
+                        <h:outputText value="#{sdVentaDetalleController.selected.importe}" title="#{bundle.ViewSdVentaDetalleTitle_importe}"/>
                         <h:outputText value="#{bundle.ViewSdVentaDetalleLabel_idProducto}"/>
                         <h:outputText value="#{sdVentaDetalleController.selected.idProducto}" title="#{bundle.ViewSdVentaDetalleTitle_idProducto}"/>
                         <h:outputText value="#{bundle.ViewSdVentaDetalleLabel_sdVenta}"/>
                         <h:outputText value="#{sdVentaDetalleController.selected.sdVenta}" title="#{bundle.ViewSdVentaDetalleTitle_sdVenta}"/>
+                        <h:outputText value="#{bundle.ViewSdVentaDetalleLabel_estado}"/>
+                        <h:outputText value="#{sdVentaDetalleController.selected.estado=='1'?'Activo':'Inactivo'}" title="#{bundle.ViewSdVentaDetalleTitle_estado}"/>
+                        
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SdVentaDetalleViewDialog.hide()"/>
                 </h:panelGroup>

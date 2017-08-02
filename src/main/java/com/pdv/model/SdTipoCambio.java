@@ -11,8 +11,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -44,7 +42,6 @@ public class SdTipoCambio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected SdTipoCambioPK sdTipoCambioPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TC")

@@ -20,11 +20,10 @@
                         <p:inputText id="abreviatura" value="#{sdMonedaController.selected.abreviatura}" title="#{bundle.CreateSdMonedaTitle_abreviatura}" />
                         <p:outputLabel value="#{bundle.CreateSdMonedaLabel_estado}" for="estado" />
                         
-                        <p:selectOneMenu id="estado" value="#{sdMonedaController.selected.estado}" required="true" requiredMessage="Seleccione un estado">
-                            <f:selectItem itemLabel="Activo" itemValue="1" />
-                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        <p:selectOneMenu id="estado" value="#{sdMonedaController.selected.estado}" required="true" requiredMessage="#{bundle.CreateSdMonedaTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
                         </p:selectOneMenu>
-                        
                         
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdMonedaController.create}" value="#{bundle.Save}" update="display,:SdMonedaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SdMonedaCreateDialog');"/>

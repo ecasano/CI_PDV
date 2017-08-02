@@ -41,9 +41,15 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSdVentaDetalleTitle_monto}"/>
+                                <h:outputText value="#{bundle.ListSdVentaDetalleTitle_precio}"/>
                             </f:facet>
-                            <h:outputText value="#{item.monto}"/>
+                            <h:outputText value="#{item.precio}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaDetalleTitle_importe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.importe}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -57,6 +63,13 @@
                             </f:facet>
                             <h:outputText value="#{item.sdVenta}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSdVentaDetalleTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado=='1'?'Activo':'Inactivo'}"/>
+                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sdVentaDetalleController.prepareCreate}" update=":SdVentaDetalleCreateForm" oncomplete="PF('SdVentaDetalleCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SdVentaDetalleViewForm" oncomplete="PF('SdVentaDetalleViewDialog').show()" disabled="#{empty sdVentaDetalleController.selected}"/>

@@ -12,8 +12,6 @@
             <h:form id="SdUnidadViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdUnidadController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSdUnidadLabel_id}"/>
-                        <h:outputText value="#{sdUnidadController.selected.id}" title="#{bundle.ViewSdUnidadTitle_id}"/>
                         <h:outputText value="#{bundle.ViewSdUnidadLabel_nombre}"/>
                         <h:outputText value="#{sdUnidadController.selected.nombre}" title="#{bundle.ViewSdUnidadTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewSdUnidadLabel_descripcion}"/>

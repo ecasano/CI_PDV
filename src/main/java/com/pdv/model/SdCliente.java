@@ -6,19 +6,26 @@
 package com.pdv.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,23 +39,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "SdCliente.findById", query = "SELECT s FROM SdCliente s WHERE s.id = :id")
     , @NamedQuery(name = "SdCliente.findByTipoDocumento", query = "SELECT s FROM SdCliente s WHERE s.tipoDocumento = :tipoDocumento")
     , @NamedQuery(name = "SdCliente.findByNroDocumento", query = "SELECT s FROM SdCliente s WHERE s.nroDocumento = :nroDocumento")
-    , @NamedQuery(name = "SdCliente.findByNombres", query = "SELECT s FROM SdCliente s WHERE s.nombres = :nombres")
-    , @NamedQuery(name = "SdCliente.findByApellidoPaterno", query = "SELECT s FROM SdCliente s WHERE s.apellidoPaterno = :apellidoPaterno")
-    , @NamedQuery(name = "SdCliente.findByApellidoMaterno", query = "SELECT s FROM SdCliente s WHERE s.apellidoMaterno = :apellidoMaterno")
+    , @NamedQuery(name = "SdCliente.findByNombre", query = "SELECT s FROM SdCliente s WHERE s.nombre = :nombre")
     , @NamedQuery(name = "SdCliente.findByDireccion", query = "SELECT s FROM SdCliente s WHERE s.direccion = :direccion")
     , @NamedQuery(name = "SdCliente.findByCorreo", query = "SELECT s FROM SdCliente s WHERE s.correo = :correo")
+    , @NamedQuery(name = "SdCliente.findByTelefono", query = "SELECT s FROM SdCliente s WHERE s.telefono = :telefono")
+    , @NamedQuery(name = "SdCliente.findByContacto", query = "SELECT s FROM SdCliente s WHERE s.contacto = :contacto")
     , @NamedQuery(name = "SdCliente.findByEstado", query = "SELECT s FROM SdCliente s WHERE s.estado = :estado")
     , @NamedQuery(name = "SdCliente.findByFechaRegistro", query = "SELECT s FROM SdCliente s WHERE s.fechaRegistro = :fechaRegistro")
     , @NamedQuery(name = "SdCliente.findByUsuarioRegistro", query = "SELECT s FROM SdCliente s WHERE s.usuarioRegistro = :usuarioRegistro")
     , @NamedQuery(name = "SdCliente.findByFechaActualizacion", query = "SELECT s FROM SdCliente s WHERE s.fechaActualizacion = :fechaActualizacion")
-    , @NamedQuery(name = "SdCliente.findByUsuarioActualizacion", query = "SELECT s FROM SdCliente s WHERE s.usuarioActualizacion = :usuarioActualizacion")
-    , @NamedQuery(name = "SdCliente.findByUbigeo", query = "SELECT s FROM SdCliente s WHERE s.ubigeo = :ubigeo")})
+    , @NamedQuery(name = "SdCliente.findByUsuarioActualizacion", query = "SELECT s FROM SdCliente s WHERE s.usuarioActualizacion = :usuarioActualizacion")})
 public class SdCliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Id")
     private Integer id;
     @Size(max = 45)
@@ -58,20 +64,20 @@ public class SdCliente implements Serializable {
     @Column(name = "NroDocumento")
     private String nroDocumento;
     @Size(max = 255)
-    @Column(name = "Nombres")
-    private String nombres;
-    @Size(max = 255)
-    @Column(name = "ApellidoPaterno")
-    private String apellidoPaterno;
-    @Size(max = 255)
-    @Column(name = "ApellidoMaterno")
-    private String apellidoMaterno;
+    @Column(name = "Nombre")
+    private String nombre;
     @Size(max = 255)
     @Column(name = "Direccion")
     private String direccion;
     @Size(max = 255)
     @Column(name = "Correo")
     private String correo;
+    @Size(max = 45)
+    @Column(name = "Telefono")
+    private String telefono;
+    @Size(max = 255)
+    @Column(name = "Contacto")
+    private String contacto;
     @Column(name = "Estado")
     private Integer estado;
     @Column(name = "FechaRegistro")
@@ -86,9 +92,11 @@ public class SdCliente implements Serializable {
     @Size(max = 45)
     @Column(name = "UsuarioActualizacion")
     private String usuarioActualizacion;
-    @Size(max = 6)
-    @Column(name = "Ubigeo")
-    private String ubigeo;
+    @JoinColumn(name = "IdUbigeo", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private SsUbiego idUbigeo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private Collection<SdVenta> sdVentaCollection;
 
     public SdCliente() {
     }
@@ -121,28 +129,12 @@ public class SdCliente implements Serializable {
         this.nroDocumento = nroDocumento;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDireccion() {
@@ -159,6 +151,22 @@ public class SdCliente implements Serializable {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 
     public Integer getEstado() {
@@ -201,12 +209,21 @@ public class SdCliente implements Serializable {
         this.usuarioActualizacion = usuarioActualizacion;
     }
 
-    public String getUbigeo() {
-        return ubigeo;
+    public SsUbiego getIdUbigeo() {
+        return idUbigeo;
     }
 
-    public void setUbigeo(String ubigeo) {
-        this.ubigeo = ubigeo;
+    public void setIdUbigeo(SsUbiego idUbigeo) {
+        this.idUbigeo = idUbigeo;
+    }
+
+    @XmlTransient
+    public Collection<SdVenta> getSdVentaCollection() {
+        return sdVentaCollection;
+    }
+
+    public void setSdVentaCollection(Collection<SdVenta> sdVentaCollection) {
+        this.sdVentaCollection = sdVentaCollection;
     }
 
     @Override
@@ -231,7 +248,8 @@ public class SdCliente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pdv.model.SdCliente[ id=" + id + " ]";
+        //return "com.pdv.model.SdCliente[ id=" + id + " ]";
+        return this.nombre;
     }
     
 }

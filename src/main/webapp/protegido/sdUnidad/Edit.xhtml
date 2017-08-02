@@ -12,14 +12,15 @@
             <h:form id="SdUnidadEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdUnidadController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditSdUnidadLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{sdUnidadController.selected.id}" title="#{bundle.EditSdUnidadTitle_id}" required="true" requiredMessage="#{bundle.EditSdUnidadRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditSdUnidadLabel_nombre}" for="nombre" />
+                       <p:outputLabel value="#{bundle.EditSdUnidadLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{sdUnidadController.selected.nombre}" title="#{bundle.EditSdUnidadTitle_nombre}" />
                         <p:outputLabel value="#{bundle.EditSdUnidadLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{sdUnidadController.selected.descripcion}" title="#{bundle.EditSdUnidadTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditSdUnidadLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{sdUnidadController.selected.estado}" title="#{bundle.EditSdUnidadTitle_estado}" />
+                        <p:selectOneMenu id="estado" value="#{sdUnidadController.selected.estado}" required="true" requiredMessage="#{bundle.EditSdUnidadTitle_estado}">
+                                <f:selectItem itemLabel="Activo" itemValue="1" />
+                                <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sdUnidadController.update}" value="#{bundle.Save}" update="display,:SdUnidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SdUnidadEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SdUnidadEditDialog.hide()"/>
