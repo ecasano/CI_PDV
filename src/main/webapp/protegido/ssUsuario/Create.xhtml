@@ -8,13 +8,14 @@
 
     <ui:composition>
 
+        
+        
         <p:dialog id="SsUsuarioCreateDlg" widgetVar="SsUsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSsUsuarioTitle}">
             
             <h:form id="SsUsuarioCreateForm">
                 
-                <p:layout style="min-width:400px;min-height:200px;">
-                    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
-                        <h:panelGroup id="display">
+                <h:panelGroup id="display"> 
+                                  
                             <p:panelGrid columns="2" rendered="#{ssUsuarioController.selected != null}">
                                 <p:outputLabel value="#{bundle.CreateSsUsuarioLabel_usuario}" for="usuario" />
                                 <p:inputText id="usuario" value="#{ssUsuarioController.selected.usuario}" title="#{bundle.CreateSsUsuarioTitle_usuario}" />
@@ -47,15 +48,10 @@
                             </p:panelGrid>
                             <p:commandButton actionListener="#{ssUsuarioController.create}" value="#{bundle.Save}" update="display,:SsUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SsUsuarioCreateDialog');"/>
                             <p:commandButton value="#{bundle.Cancel}" onclick="SsUsuarioCreateDialog.hide()"/>
-                        </h:panelGroup>
-                    </p:layoutUnit>
-
-                    <p:layoutUnit position="center">
-                        Center
-                    </p:layoutUnit>
-                </p:layout>
-                
-                
+                        
+                   
+                 </h:panelGroup>  
+                 
             </h:form>
         </p:dialog>
 
