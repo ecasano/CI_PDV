@@ -76,7 +76,7 @@
                         
                         <p:growl id="msgs" />
                         
- 
+                        <p:panel header="Nuevo Item" style="margin-bottom:20px">
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputLabel value="Cantidad : *" for="txt_cantidad"></h:outputLabel>
                                 <p:inputText id="txt_title" value="#{sdVentaController.detalleItem.cantidad}" required="true"/>
@@ -92,7 +92,30 @@
                                     <p:collector value="#{sdVentaController.detalleItem}" addTo="#{sdVentaController.detalleItems}" unique="true"/>
                                 </p:commandButton>
                             </h:panelGrid>
-                       
+                        </p:panel>
+
+                           <p:outputPanel id="items">
+                             <p:dataTable value="#{sdVentaController.detalleItems}" var="detalleItem" id="itemsTable">
+
+                                <p:column headerText="Title">
+                                    <h:outputText value="#{detalleItem.cantidad}" />
+                                </p:column>
+
+                                <p:column headerText="Author">
+                                    <f:facet name="header">
+                                        <h:outputText value="Author" />
+                                    </f:facet>
+                                    <h:outputText value="#{detalleItem.precio}" />
+                                </p:column>
+
+                                <p:column headerText="Action">
+                                    <p:commandLink value="Remove" update=":SdVentaCreateForm:items" process=":SdVentaCreateForm:items">
+                                        <p:collector value="#{detalleItem}" removeFrom="#{sdVentaController.detalleItems}" unique="true"/>
+                                    </p:commandLink>
+                                </p:column>
+
+                            </p:dataTable>
+                        </p:outputPanel>
                       
                          </h:panelGroup>
                    

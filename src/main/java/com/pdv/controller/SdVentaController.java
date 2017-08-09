@@ -4,16 +4,20 @@ import com.pdv.model.SdVenta;
 import com.pdv.controller.util.JsfUtil;
 import com.pdv.controller.util.JsfUtil.PersistAction;
 import com.pdv.ejb.SdVentaFacade;
+import com.pdv.model.SdVentaDetalle;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -27,6 +31,44 @@ public class SdVentaController implements Serializable {
     private com.pdv.ejb.SdVentaFacade ejbFacade;
     private List<SdVenta> items = null;
     private SdVenta selected;
+    
+    //variables del Detalle de la Venta
+    private SdVentaDetalle detalle_item; 
+    private List<SdVentaDetalle> detalle_items;
+
+    //INICIO: Metodos del Detalle de la Venta
+    @PostConstruct
+    public void init() {
+        detalle_item = new SdVentaDetalle();
+        detalle_items = new ArrayList<SdVentaDetalle>();
+    }
+    
+    public void createNewDetalleItem() {
+        if(detalle_items.contains(detalle_item)) {
+            FacesMessage msg = new FacesMessage("Dublicated", "This book has already been added");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } 
+        else {
+            detalle_items.add(detalle_item);
+            detalle_item = new SdVentaDetalle();
+        }
+    }
+    
+    public String reinitDetalleItem() {
+        detalle_item = new SdVentaDetalle();
+        return null;
+    }
+    
+    public SdVentaDetalle getDetalleItem() {
+        return detalle_item;
+    }
+ 
+    public List<SdVentaDetalle> getDetalleItems() {
+        return detalle_items;
+    }
+    
+    //FIN: Metodos del Detalle de la Venta
+    
 
     public SdVentaController() {
     }

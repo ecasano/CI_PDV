@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,76 +58,100 @@ import javax.xml.bind.annotation.XmlTransient;
 public class SdVenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
+    
     @Size(max = 45)
     @Column(name = "SerieDocumento")
     private String serieDocumento;
+    
     @Size(max = 45)
     @Column(name = "NumeroDocumento")
     private String numeroDocumento;
+    
     @Column(name = "FechaDocumento")
     @Temporal(TemporalType.DATE)
     private Date fechaDocumento = new Date();
+    
     @Column(name = "FechaVencimientoDocumento")
     @Temporal(TemporalType.DATE)
     private Date fechaVencimientoDocumento;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
+// @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TipoCambio")
     private BigDecimal tipoCambio;
+    
     @Column(name = "Subtotal")
     private BigDecimal subtotal;
+    
     @Column(name = "IGV")
     private BigDecimal igv;
+    
     @Column(name = "Total")
     private BigDecimal total;
+    
     @Column(name = "Estado")
     private Integer estado;
+    
     @Column(name = "FechaRegistro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
+    
     @Size(max = 45)
     @Column(name = "UsuarioRegistro")
     private String usuarioRegistro;
+    
     @Column(name = "FechaActualizacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaActualizacion;
+    
     @Size(max = 45)
     @Column(name = "UsuarioActualizacion")
     private String usuarioActualizacion;
+    
     @Column(name = "FechaAnulacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaAnulacion;
+    
     @Size(max = 45)
     @Column(name = "UsuarioAnulacion")
     private String usuarioAnulacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sdVenta")
-    private Collection<SdVentaDetalle> sdVentaDetalleCollection;
+    
     @JoinColumn(name = "IdCliente", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdCliente idCliente;
+    
     @JoinColumn(name = "IdCorrelativo", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdCorrelativo idCorrelativo;
+    
     @JoinColumn(name = "IdFormaPago", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdFormaPago idFormaPago;
+    
     @JoinColumn(name = "IdMoneda", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdMoneda idMoneda;
+    
     @JoinColumn(name = "IdPuntoVenta", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdPuntoVenta idPuntoVenta;
+    
     @JoinColumn(name = "IdTipoDocumento", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SdTipoDocumento idTipoDocumento;
+    
     @JoinColumn(name = "IdUsuario", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private SsUsuario idUsuario;
-
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sdVenta")
+    private Collection<SdVentaDetalle> sdVentaDetalleCollection;
+    
     public SdVenta() {
     }
 
