@@ -5,6 +5,7 @@ import com.pdv.controller.util.JsfUtil;
 import com.pdv.controller.util.JsfUtil.PersistAction;
 import com.pdv.ejb.SdVentaFacade;
 import com.pdv.model.SdVentaDetalle;
+import com.pdv.model.SdVentaDetallePK;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,12 +44,20 @@ public class SdVentaController implements Serializable {
         detalle_items = new ArrayList<SdVentaDetalle>();
     }
     
-    public void createNewDetalleItem() {
+    public void createNew() {
         if(detalle_items.contains(detalle_item)) {
             FacesMessage msg = new FacesMessage("Dublicated", "This book has already been added");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         } 
         else {
+            //DetalleItem PK
+            /*SdVentaDetallePK sdVentaDetallePK = new SdVentaDetallePK();
+            sdVentaDetallePK.setIdItem(detalle_items.size()+1);
+            sdVentaDetallePK.setIdVenta(selected.getId());
+            
+            detalle_item.setSdVentaDetallePK(sdVentaDetallePK);*/
+            System.out.println("entro aqui  public void createNew() ");
+            //DetaleItems
             detalle_items.add(detalle_item);
             detalle_item = new SdVentaDetalle();
         }
@@ -56,6 +65,10 @@ public class SdVentaController implements Serializable {
     
     public String reinitDetalleItem() {
         detalle_item = new SdVentaDetalle();
+        
+        System.out.println("entro aqui  public String reinitDetalleItem() ");
+        System.out.println("item: " + detalle_items.size());
+        
         return null;
     }
     
@@ -71,6 +84,9 @@ public class SdVentaController implements Serializable {
     
 
     public SdVentaController() {
+        //detalle_item = new SdVentaDetalle();
+        //detalle_items = new ArrayList<SdVentaDetalle>();
+        
     }
 
     public SdVenta getSelected() {
