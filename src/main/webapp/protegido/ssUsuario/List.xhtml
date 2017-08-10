@@ -56,13 +56,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSsUsuarioTitle_idPuntoVenta}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idPuntoVenta}"/>
+                            <h:outputText value="#{item.idPuntoVenta.descripcion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSsUsuarioTitle_idPerfil}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idPerfil}"/>
+                            <h:outputText value="#{item.idPerfil.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

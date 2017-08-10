@@ -2,7 +2,10 @@ package com.pdv.controller;
 
 import com.pdv.ejb.SsUsuarioFacade;
 import com.pdv.model.SsUsuario;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -81,7 +84,12 @@ public class IndexController implements Serializable {
     
      public void cerrarSesion(){
         
-       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/PDV");
+        } catch (IOException ex) {
+            //Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
     }
      

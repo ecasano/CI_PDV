@@ -12,8 +12,6 @@
             <h:form id="SdProductoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sdProductoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSdProductoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{sdProductoController.selected.id}" title="#{bundle.CreateSdProductoTitle_id}" required="true" requiredMessage="#{bundle.CreateSdProductoRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateSdProductoLabel_codigo}" for="codigo" />
                         <p:inputText id="codigo" value="#{sdProductoController.selected.codigo}" title="#{bundle.CreateSdProductoTitle_codigo}" />
                         <p:outputLabel value="#{bundle.CreateSdProductoLabel_nombre}" for="nombre" />

@@ -72,10 +72,18 @@
                            
                                  <p:panelGrid columns="1" style="border-style: hidden;width:450px;"> 
 
-
                                     <p:growl id="msgs" />
 
                                      <p:panelGrid columns="2">
+                                          <p:outputLabel value="Producto :" for="idProducto" />
+                                         
+                                          <p:selectOneMenu id="idProducto" value="#{sdVentaController.detalleItem.idProducto}" required="true" requiredMessage="#{bundle.EditSdVentaDetalleRequiredMessage_idProducto}">
+                                                <f:selectItems value="#{sdProductoController.itemsAvailableSelectOne}"
+                                                               var="idProductoItem"
+                                                               itemValue="#{idProductoItem}"/>
+                                          </p:selectOneMenu>
+                                          
+                                          
                                           <p:outputLabel value="Cantidad :" for="txt_cantidad" />
                                           <p:inputText id="txt_cantidad" value="#{sdVentaController.detalleItem.cantidad}"/>
 
@@ -87,7 +95,7 @@
 
                                           <p:commandButton id="btn_reset" value="Reset" type="reset"/>
                                           <p:commandButton id="btn_add" value="Add" update="items msgs @parent" action="#{sdVentaController.reinitDetalleItem}" >
-                                              <p:collector value="#{sdVentaController.detalleItem}" addTo="#{sdVentaController.detalleItems}" unique="false"/>
+                                              <p:collector value="#{sdVentaController.detalleItem}" addTo="#{sdVentaController.detalleItems}" unique="true"/>
                                           </p:commandButton>
                                           
                                     </p:panelGrid>
@@ -97,6 +105,10 @@
 
                                            <p:column headerText="Item">
                                                <h:outputText value="#{detalleItem.sdVentaDetallePK.idItem}"/>
+                                           </p:column>
+                                            
+                                            <p:column headerText="Producto">
+                                                <h:outputText value="#{detalleItem.idProducto.codigo}"/>
                                            </p:column>
                                             
                                            <p:column headerText="Cantidad">
