@@ -137,7 +137,7 @@ public class SsUbiego implements Serializable {
     @Override
     public String toString() {
         //return "com.pdv.model.SsUbiego[ id=" + id + " ]";
-        return this.id;
+        return this.departamento  + "." + this.provincia +"." + this.distrito;
     }
     
 }

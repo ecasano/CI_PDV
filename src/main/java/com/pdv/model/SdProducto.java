@@ -224,7 +224,7 @@ public class SdProducto implements Serializable {
     @Override
     public String toString() {
         //return "com.pdv.model.SdProducto[ id=" + id + " ]";
-        return this.codigo + "-" + this.nombre;
+        return this.codigo + "-" + this.nombre + " S/ " + this.precio;
     }
     
 }

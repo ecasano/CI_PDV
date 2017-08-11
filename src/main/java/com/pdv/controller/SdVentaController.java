@@ -86,8 +86,8 @@ public class SdVentaController implements Serializable {
         BigDecimal importe = precio.multiply(cantidad);
         detalle_item.setImporte(importe);
     }
-    
-    public void handlePrecioChange(AjaxBehaviorEvent event){
+    //AjaxBehaviorEvent event
+    public void handlePrecioChange(){
         if(detalle_item.getIdProducto() != null)
             System.out.println(detalle_item.getIdProducto().getPrecio());
         else
