@@ -4,8 +4,11 @@ import com.pdv.model.SdVenta;
 import com.pdv.controller.util.JsfUtil;
 import com.pdv.controller.util.JsfUtil.PersistAction;
 import com.pdv.ejb.SdVentaFacade;
+import com.pdv.model.SdCorrelativo;
+import com.pdv.model.SdPuntoVenta;
 import com.pdv.model.SdVentaDetalle;
 import com.pdv.model.SdVentaDetallePK;
+import com.pdv.model.SsUsuario;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -42,13 +45,16 @@ public class SdVentaController implements Serializable {
     //INICIO: Metodos del Detalle de la Venta
     @PostConstruct
     public void init() {
+        //detalle
         detalle_item = new SdVentaDetalle();
         SdVentaDetallePK sdVentaDetallePK = new SdVentaDetallePK();
         sdVentaDetallePK.setIdItem(1);
         detalle_item.setSdVentaDetallePK(sdVentaDetallePK);
         
+        //lista detalle
         detalle_items = new ArrayList<SdVentaDetalle>();
         
+
     }
     
     public void createNewDetalleItem() {
@@ -71,12 +77,31 @@ public class SdVentaController implements Serializable {
         //sdVentaDetallePK.setIdVenta(selected.getId());
         detalle_item.setSdVentaDetallePK(sdVentaDetallePK);
         
-        //BigDecimal cantidad = detalle_item.getCantidad();
-        //BigDecimal precio = detalle_item.getPrecio();
-        //BigDecimal importe = precio.multiply(cantidad);
+        try{
+        BigDecimal cantidad = detalle_item.getCantidad();
+        BigDecimal precio = detalle_item.getPrecio();
+        BigDecimal importe = precio.multiply(cantidad);
         
-        //detalle_item.setImporte(importe);
+        detalle_item.setImporte(importe);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        //Se adicionan los identificadores
+        SdCorrelativo idCorrelativo = new SdCorrelativo();
+        idCorrelativo.setId(1);
+        selected.setIdCorrelativo(idCorrelativo);
+        
+        SdPuntoVenta idPuntoVenta = new SdPuntoVenta();
+        idPuntoVenta.setId(1);
+        idPuntoVenta.setCodigo("PDV001");
                 
+        selected.setIdPuntoVenta(idPuntoVenta);
+        
+        SsUsuario idUsuario = new SsUsuario();
+        idUsuario.setId(1);
+        selected.setIdUsuario(idUsuario);
+        
         return null;
     }
     
@@ -122,6 +147,7 @@ public class SdVentaController implements Serializable {
     }
 
     protected void initializeEmbeddableKey() {
+        
     }
 
     private SdVentaFacade getFacade() {
@@ -130,11 +156,20 @@ public class SdVentaController implements Serializable {
 
     public SdVenta prepareCreate() {
         selected = new SdVenta();
+         //Pre carga
+        //Estado, FechaActualizacion, FechaAnulacion, 
+        //FechaDocumento, FechaRegistro, FechaVencimientoDocumento,IGV, NumeroDocumento, SerieDocumento, Subtotal, TipoCambio, Total, UsuarioActualizacion, UsuarioAnulacion, UsuarioRegistro,
+        //IdCliente, IdCorrelativo, IdFormaPago, IdMoneda, 
+        //IdPuntoVenta, IdTipoDocumento, IdUsuario
+        
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
+        
+        
+        
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SdVentaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.

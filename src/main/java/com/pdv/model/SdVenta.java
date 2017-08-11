@@ -153,6 +153,9 @@ public class SdVenta implements Serializable {
     private Collection<SdVentaDetalle> sdVentaDetalleCollection;
     
     public SdVenta() {
+        this.setSerieDocumento("F001");
+        this.setNumeroDocumento("00000001");
+        
     }
 
     public SdVenta(Integer id) {

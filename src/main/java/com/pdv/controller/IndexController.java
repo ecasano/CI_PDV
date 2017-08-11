@@ -86,7 +86,7 @@ public class IndexController implements Serializable {
         
         try {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/PDV");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/PDV/");
         } catch (IOException ex) {
             //Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
         }
