@@ -8,6 +8,7 @@ import com.pdv.model.SdVentaDetalle;
 import com.pdv.model.SdVentaDetallePK;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.AjaxBehaviorEvent;
 
 @Named("sdVentaController")
 @SessionScoped
@@ -46,9 +48,10 @@ public class SdVentaController implements Serializable {
         detalle_item.setSdVentaDetallePK(sdVentaDetallePK);
         
         detalle_items = new ArrayList<SdVentaDetalle>();
+        
     }
     
-    public void createNew() {
+    public void createNewDetalleItem() {
                     
         if(detalle_items.contains(detalle_item)) {
             FacesMessage msg = new FacesMessage("Dublicated", "This book has already been added");
@@ -67,10 +70,29 @@ public class SdVentaController implements Serializable {
         sdVentaDetallePK.setIdItem(detalle_items.size()+1);
         //sdVentaDetallePK.setIdVenta(selected.getId());
         detalle_item.setSdVentaDetallePK(sdVentaDetallePK);
+        
+        //BigDecimal cantidad = detalle_item.getCantidad();
+        //BigDecimal precio = detalle_item.getPrecio();
+        //BigDecimal importe = precio.multiply(cantidad);
+        
+        //detalle_item.setImporte(importe);
                 
         return null;
     }
     
+    public void handleImporteChange(){
+        BigDecimal cantidad = detalle_item.getCantidad();
+        BigDecimal precio = detalle_item.getPrecio();
+        BigDecimal importe = precio.multiply(cantidad);
+        detalle_item.setImporte(importe);
+    }
+    
+    public void handlePrecioChange(AjaxBehaviorEvent event){
+        if(detalle_item.getIdProducto() != null)
+            System.out.println(detalle_item.getIdProducto().getPrecio());
+        else
+            System.out.println(detalle_item.getIdProducto() + "");
+    }
     public SdVentaDetalle getDetalleItem() {
         return detalle_item;
     }

@@ -13,7 +13,7 @@
        
                      <h:form id="SdVentaCreateForm">
                     
-                        <p:panelGrid columns="2" >
+                        <p:panelGrid id="GridPrincipal" columns="2" >
                                 
                            
                                 
@@ -21,10 +21,11 @@
                                     
                                     <p:panelGrid columns="2" rendered="#{sdVentaController.selected != null}">
                                         <p:outputLabel value="#{bundle.CreateSdVentaLabel_idCliente}" for="idCliente" />
-                                        <p:selectOneMenu id="idCliente" value="#{sdVentaController.selected.idCliente}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idCliente}">
+                                        <p:selectOneMenu id="idCliente" onchange="" value="#{sdVentaController.selected.idCliente}" required="true" requiredMessage="#{bundle.EditSdVentaRequiredMessage_idCliente}">
                                             <f:selectItems value="#{sdClienteController.itemsAvailableSelectOne}"
                                                            var="idClienteItem"
                                                            itemValue="#{idClienteItem}"/>
+                                            
                                         </p:selectOneMenu>
                                         
                                        <p:outputLabel value="#{bundle.CreateSdVentaLabel_idTipoDocumento}" for="idTipoDocumento" />
@@ -54,6 +55,7 @@
                                             <f:selectItems value="#{sdMonedaController.itemsAvailableSelectOne}"
                                                            var="idMonedaItem"
                                                            itemValue="#{idMonedaItem}"/>
+                                             
                                         </p:selectOneMenu>
                                         <p:inputText id="tipoCambio" disabled="true"  value="#{sdVentaController.selected.tipoCambio}" title="#{bundle.CreateSdVentaTitle_tipoCambio}" size="4" maxlength="4" />
                                         </p:panelGrid>
@@ -70,31 +72,30 @@
                                 </h:panelGroup>
                                  
                            
-                                 <p:panelGrid columns="1" style="border-style: hidden;width:450px;"> 
-
+                                 <p:panelGrid id="displayDetalle" columns="1" style="border-style: hidden;width:650px;"> 
+                                    
                                     <p:growl id="msgs" />
 
-                                     <p:panelGrid columns="2">
-                                          <p:outputLabel value="Producto :" for="idProducto" />
-                                         
+                                     <p:panelGrid id="displayDetalleNew" columns="2">
+                                          <p:outputLabel value="Producto :" for="idProducto"/>
+                                          
                                           <p:selectOneMenu id="idProducto" value="#{sdVentaController.detalleItem.idProducto}" required="true" requiredMessage="#{bundle.EditSdVentaDetalleRequiredMessage_idProducto}">
-                                                <f:selectItems value="#{sdProductoController.itemsAvailableSelectOne}"
+                                              <f:selectItem itemLabel="Seleccione producto...."/>  
+                                              <f:selectItems value="#{sdProductoController.itemsAvailableSelectOne}" 
                                                                var="idProductoItem"
                                                                itemValue="#{idProductoItem}"/>
-                                          </p:selectOneMenu>
+                                              <f:ajax render="txt_precio" listener="#{sdVentaController.handlePrecioChange}"/>
+                                      
+                                         </p:selectOneMenu>
                                           
+                                          <p:outputLabel value="Precio Unit:" for="txt_precio"/>
+                                          <p:inputText id="txt_precio" value="#{sdVentaController.detalleItem.precio}" required="true"/>
                                           
                                           <p:outputLabel value="Cantidad :" for="txt_cantidad" />
-                                          <p:inputText id="txt_cantidad" value="#{sdVentaController.detalleItem.cantidad}"/>
-
-                                          <p:outputLabel value="Precio :" for="txt_precio"/>
-                                          <p:inputText id="txt_precio" value="#{sdVentaController.detalleItem.precio}"/>
-
-                                          <p:outputLabel value="Importe :" for="txt_importe"/>
-                                          <p:inputText id="txt_importe" value="#{sdVentaController.detalleItem.importe}"/>
+                                          <p:inputText id="txt_cantidad" value="#{sdVentaController.detalleItem.cantidad}" required="true"/>
 
                                           <p:commandButton id="btn_reset" value="Reset" type="reset"/>
-                                          <p:commandButton id="btn_add" value="Add" update="items msgs @parent" action="#{sdVentaController.reinitDetalleItem}" >
+                                          <p:commandButton id="btn_add" value="Add" update="items msgs @parent" action="#{sdVentaController.reinitDetalleItem}">
                                               <p:collector value="#{sdVentaController.detalleItem}" addTo="#{sdVentaController.detalleItems}" unique="true"/>
                                           </p:commandButton>
                                           
@@ -103,26 +104,30 @@
                                      <p:outputPanel id="items">
                                         <p:dataTable value="#{sdVentaController.detalleItems}" var="detalleItem" id="itemsTable">
 
-                                           <p:column headerText="Item">
+                                            <p:column headerText="Item" width="10">
                                                <h:outputText value="#{detalleItem.sdVentaDetallePK.idItem}"/>
                                            </p:column>
                                             
-                                            <p:column headerText="Producto">
-                                                <h:outputText value="#{detalleItem.idProducto.codigo}"/>
+                                            <p:column headerText="Producto" width="150">
+                                                <h:outputText value="#{detalleItem.idProducto.toString()}"/>
                                            </p:column>
                                             
-                                           <p:column headerText="Cantidad">
+                                           <p:column headerText="Cantidad" width="20">
                                                <h:outputText value="#{detalleItem.cantidad}"/>
                                            </p:column>
                                            
-                                           <p:column headerText="Precio">
+                                           <p:column headerText="Precio Unit" width="20">
                                                <f:facet name="header">
                                                    <h:outputText value="Precio" />
                                                </f:facet>
-                                               <h:outputText value="#{detalleItem.precio}"/>
+                                               <h:outputText value="#{detalleItem.precio}" />
+                                           </p:column>
+                                            
+                                            <p:column headerText="Sub Total" width="25">
+                                                <h:outputText value="#{detalleItem.importe}" />
                                            </p:column>
 
-                                           <p:column headerText="Action">
+                                           <p:column headerText="Action" width="10">
                                                <p:commandLink value="Remove" update=":SdVentaCreateForm:items" process=":SdVentaCreateForm:items">
                                                    <p:collector value="#{detalleItem}" removeFrom="#{sdVentaController.detalleItems}" unique="true"/>
                                                </p:commandLink>
